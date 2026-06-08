@@ -287,11 +287,15 @@
   .about-close:hover { color: #242424; }
   .about-icon { font-size: 36px; margin-bottom: 24px; }
   .about-text {
-    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 18px; font-weight: 700; line-height: 1.9; color: #242424;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px; line-height: 1.9; color: #242424;
     text-align: left;
   }
   .about-text p { margin-bottom: 1.4em; }
+  .about-text .about-highlight {
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
   @media (max-width: 600px) {
     .about-inner { padding: 40px 28px; }
     .about-text { font-size: 15px; }
@@ -329,9 +333,9 @@
       <button class="about-close" onclick="closeAbout()">&times;</button>
       <div class="about-icon">🪄</div>
       <div class="about-text">
-        <p>欢迎光临有求必应书屋！</p>
+        <p><span class="about-highlight">欢迎光临有求必应书屋！</span></p>
         <p>线上书店是 AI Coding 的，读书笔记是古法手搓的。</p>
-        <p>Enjoy~</p>
+        <p><span class="about-highlight">Enjoy~</span></p>
       </div>
     </div>
   </div>
