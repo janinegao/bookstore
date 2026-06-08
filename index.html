@@ -273,22 +273,13 @@
   }
   .about-overlay.active { display: flex; }
   .about-envelope {
-    background: #f5eed6;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(139,109,63,0.04) 28px, rgba(139,109,63,0.04) 29px),
-      repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(139,109,63,0.03) 28px, rgba(139,109,63,0.03) 29px);
+    background: #fff;
     max-width: 480px; width: 100%;
-    border-radius: 3px; padding: 48px 52px; position: relative;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.25), 0 2px 8px rgba(139,109,63,0.15),
-      inset 0 0 60px rgba(139,109,63,0.08);
-    border: 1px solid rgba(139,109,63,0.2);
+    border-radius: 8px; padding: 48px 52px; position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   }
   .about-envelope::before {
-    content: '';
-    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
-    border-radius: 3px;
-    box-shadow: inset 0 0 30px rgba(139,109,63,0.1);
-    pointer-events: none;
+    display: none;
   }
   .about-close {
     position: absolute; top: 12px; right: 16px;
@@ -306,14 +297,13 @@
     font-size: 18px; line-height: 1;
   }
   .about-text {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 15px; line-height: 1.9; color: #2d4a3e;
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    font-size: 20px; font-weight: 700; line-height: 1.9; color: #242424;
     text-align: center;
   }
   .about-text p { margin-bottom: 1.2em; }
   .about-text .about-highlight {
-    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 22px; font-weight: 700; color: #1a3a2a;
+    font-size: 24px;
   }
   .about-stamp {
     position: absolute; top: 16px; left: 20px;
@@ -325,8 +315,8 @@
   }
   @media (max-width: 600px) {
     .about-envelope { padding: 36px 28px; }
-    .about-text { font-size: 14px; }
-    .about-text .about-highlight { font-size: 18px; }
+    .about-text { font-size: 17px; }
+    .about-text .about-highlight { font-size: 20px; }
     .about-seal { width: 40px; height: 40px; font-size: 15px; margin-bottom: 22px; }
   }
 </style>
