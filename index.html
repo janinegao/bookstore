@@ -179,6 +179,47 @@
     color: #9CB5D1; font-weight: 600;
   }
 
+
+  /* WISH SECTION */
+  .wish-section {
+    max-width: 700px; margin: 0 auto; padding: 48px 32px 20px;
+    text-align: center;
+  }
+  .wish-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: 1.5px solid #9CB5D1; border-radius: 24px;
+    padding: 10px 28px; font-size: 15px; color: #9CB5D1;
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em;
+  }
+  .wish-btn:hover { background: #9CB5D1; color: #fff; }
+  .wish-input-wrap {
+    display: none; margin-top: 20px;
+  }
+  .wish-input-wrap.active { display: block; animation: fadeInUp 0.4s ease; }
+  .wish-input {
+    width: 100%; max-width: 400px; border: none; border-bottom: 1.5px solid #ccc;
+    background: transparent; padding: 12px 0; font-size: 16px;
+    font-family: 'Source Serif 4', Georgia, serif; color: #242424;
+    outline: none; text-align: center; transition: border-color 0.3s;
+  }
+  .wish-input:focus { border-color: #9CB5D1; }
+  .wish-input::placeholder { color: #c0c0c0; }
+  .wish-done {
+    display: none; margin-top: 16px; font-size: 15px; color: #9CB5D1;
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    animation: fadeInUp 0.5s ease;
+  }
+  .wishes-display {
+    margin-top: 40px; padding-top: 32px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  .wish-card {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 15px;
+    color: #555; line-height: 1.8; padding: 12px 0;
+    text-align: center; max-width: 480px; margin: 0 auto;
+  }
+
   /* ANIMATION */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -330,6 +371,16 @@
   </div>
 
 
+
+
+  <div class="wish-section" id="wishSection">
+    <button class="wish-btn" onclick="toggleWish()">🪄 许个愿</button>
+    <div class="wish-input-wrap" id="wishInputWrap">
+      <input type="text" class="wish-input" id="wishInput" placeholder="写下你的愿望…" autocomplete="off">
+    </div>
+    <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
+    <div class="wishes-display" id="wishesDisplay"></div>
+  </div>
 
   <div class="about-overlay" id="aboutOverlay" onclick="if(event.target===this)closeAbout()">
     <div class="about-inner">
