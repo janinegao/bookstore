@@ -197,14 +197,14 @@
   .wish-input::placeholder { color: #bbb; font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 6px;
-    background: #9CB5D1; border: none; border-radius: 20px;
+    background: rgba(156, 181, 209, 0.45); border: none; border-radius: 20px;
     padding: 8px 24px; margin-top: 14px;
     font-size: 15px; color: #fff;
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.05em;
-    box-shadow: 0 2px 8px rgba(156,181,209,0.25);
+    box-shadow: 0 2px 8px rgba(156,181,209,0.15);
   }
-  .wish-submit:hover { background: #8aa4c0; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(156,181,209,0.35); }
+  .wish-submit:hover { background: rgba(156, 181, 209, 0.65); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(156,181,209,0.25); }
   .wish-done {
     display: none; font-size: 15px; color: #9CB5D1;
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
@@ -376,7 +376,7 @@
 
   <div class="wish-section" id="wishSection">
     <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书..." autocomplete="off" enterkeyhint="send">
-    <button class="wish-submit" type="button" onclick="submitWish()">许个愿</button>
+    <button class="wish-submit" type="button" onclick="submitWish()">🪄 许个愿</button>
     <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
     <div class="wishes-display" id="wishesDisplay"></div>
   </div>
