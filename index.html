@@ -189,8 +189,8 @@
     display: inline-flex; align-items: center; gap: 6px;
     background: none; border: 1.5px solid #9CB5D1; border-radius: 24px;
     padding: 10px 28px; font-size: 15px; color: #9CB5D1;
-    font-family: 'Noto Sans SC', sans-serif;
-    cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.04em;
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em;
   }
   .wish-btn:hover { background: #9CB5D1; color: #fff; }
   .wish-input-wrap {
@@ -207,7 +207,7 @@
   .wish-input::placeholder { color: #c0c0c0; }
   .wish-done {
     display: none; margin-top: 16px; font-size: 15px; color: #9CB5D1;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     animation: fadeInUp 0.5s ease;
   }
   .wishes-display {
@@ -659,6 +659,51 @@
     const nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
   });
+
+
+  // WISH FUNCTIONALITY
+  function toggleWish() {
+    const wrap = document.getElementById('wishInputWrap');
+    const btn = document.querySelector('.wish-btn');
+    wrap.classList.add('active');
+    btn.style.display = 'none';
+    document.getElementById('wishInput').focus();
+  }
+
+  document.getElementById('wishInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const wish = this.value.trim();
+      if (!wish) return;
+      fetch('https://formsubmit.co/ajax/shubao@coze.email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          wish: wish,
+          _subject: '有求必应书屋 · 新愿望',
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+      this.value = '';
+      document.getElementById('wishInputWrap').style.display = 'none';
+      document.getElementById('wishDone').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('wishDone').style.display = 'none';
+        document.querySelector('.wish-btn').style.display = 'inline-flex';
+      }, 3000);
+    }
+  });
+
+  // CURATED WISHES
+  const curatedWishes = [];
+  function renderWishes() {
+    const container = document.getElementById('wishesDisplay');
+    if (curatedWishes.length === 0) { container.style.display = 'none'; return; }
+    container.style.display = 'block';
+    container.innerHTML = curatedWishes.map(w => '<div class="wish-card">' + w + '</div>').join('');
+  }
+  renderWishes();
 
 </script>
 
