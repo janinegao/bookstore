@@ -675,9 +675,9 @@
 
   // WISH FUNCTIONALITY
   function toggleWish() {
-    const wrap = document.getElementById('wishInputWrap');
+    const form = document.getElementById('wishForm');
     const btn = document.querySelector('.wish-btn');
-    wrap.classList.add('active');
+    form.classList.add('visible');
     btn.style.display = 'none';
     document.getElementById('wishInput').focus();
   }
@@ -697,10 +697,10 @@
       })
     });
     input.value = '';
-    document.getElementById('wishInputWrap').style.display = 'none';
-    document.getElementById('wishDone').style.display = 'block';
+    document.getElementById('wishForm').classList.remove('visible');
+    document.getElementById('wishDone').classList.add('visible');
     setTimeout(function() {
-      document.getElementById('wishDone').style.display = 'none';
+      document.getElementById('wishDone').classList.remove('visible');
       document.querySelector('.wish-btn').style.display = 'inline-flex';
     }, 3000);
   }
