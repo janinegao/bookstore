@@ -182,29 +182,40 @@
 
   /* WISH SECTION */
   .wish-section {
-    max-width: 700px; margin: 0 auto; padding: 48px 32px 20px;
+    max-width: 700px; margin: 0 auto; padding: 40px 32px 60px;
     text-align: center;
   }
   .wish-btn {
-    display: inline-flex; align-items: center; gap: 6px;
+    display: inline-flex; align-items: center; gap: 8px;
     background: none; border: 1.5px solid #9CB5D1; border-radius: 24px;
     padding: 10px 28px; font-size: 15px; color: #9CB5D1;
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em;
+    cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.05em;
   }
   .wish-btn:hover { background: #9CB5D1; color: #fff; }
   .wish-input-wrap {
     display: none; margin-top: 20px;
   }
   .wish-input-wrap.active { display: block; animation: fadeInUp 0.4s ease; }
+  .wish-input-row {
+    display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 380px; margin: 0 auto;
+  }
   .wish-input {
-    width: 100%; max-width: 400px; border: none; border-bottom: 1.5px solid #ccc;
-    background: transparent; padding: 12px 0; font-size: 16px;
+    flex: 1; border: none; border-bottom: 1.5px solid #d0d0d0;
+    background: transparent; padding: 10px 0; font-size: 15px;
     font-family: 'Source Serif 4', Georgia, serif; color: #242424;
-    outline: none; text-align: center; transition: border-color 0.3s;
+    outline: none; text-align: left; transition: border-color 0.3s;
   }
   .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #c0c0c0; }
+  .wish-input::placeholder { color: #c0c0c0; font-size: 14px; }
+  .wish-submit-btn {
+    background: #9CB5D1; border: none; border-radius: 20px;
+    min-width: 56px; height: 36px; font-size: 13px; color: #fff;
+    font-family: 'Noto Sans SC', sans-serif; font-weight: 500;
+    cursor: pointer; transition: all 0.3s ease; flex-shrink: 0;
+    letter-spacing: 0.05em; padding: 0 16px;
+  }
+  .wish-submit-btn:hover { background: #8aa4c0; }
   .wish-done {
     display: none; margin-top: 16px; font-size: 15px; color: #9CB5D1;
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
@@ -376,7 +387,10 @@
   <div class="wish-section" id="wishSection">
     <button class="wish-btn" onclick="toggleWish()">🪄 许个愿</button>
     <div class="wish-input-wrap" id="wishInputWrap">
-      <input type="text" class="wish-input" id="wishInput" placeholder="写下你想看的书..." autocomplete="off">
+      <div class="wish-input-row">
+        <input type="text" class="wish-input" id="wishInput" placeholder="写下你想看的书..." autocomplete="off" enterkeyhint="send">
+        <button type="button" class="wish-submit-btn" onclick="submitWish()">提交</button>
+      </div>
     </div>
     <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
     <div class="wishes-display" id="wishesDisplay"></div>
@@ -670,28 +684,33 @@
     document.getElementById('wishInput').focus();
   }
 
+  function submitWish() {
+    const input = document.getElementById('wishInput');
+    const wish = input.value.trim();
+    if (!wish) return;
+    fetch('https://formsubmit.co/ajax/shubao@coze.email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        wish: wish,
+        _subject: '有求必应书屋 · 新愿望',
+        _captcha: 'false',
+        _template: 'table'
+      })
+    });
+    input.value = '';
+    document.getElementById('wishInputWrap').style.display = 'none';
+    document.getElementById('wishDone').style.display = 'block';
+    setTimeout(function() {
+      document.getElementById('wishDone').style.display = 'none';
+      document.querySelector('.wish-btn').style.display = 'inline-flex';
+    }, 3000);
+  }
+
   document.getElementById('wishInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const wish = this.value.trim();
-      if (!wish) return;
-      fetch('https://formsubmit.co/ajax/shubao@coze.email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          wish: wish,
-          _subject: '有求必应书屋 · 新愿望',
-          _captcha: 'false',
-          _template: 'table'
-        })
-      });
-      this.value = '';
-      document.getElementById('wishInputWrap').style.display = 'none';
-      document.getElementById('wishDone').style.display = 'block';
-      setTimeout(function() {
-        document.getElementById('wishDone').style.display = 'none';
-        document.querySelector('.wish-btn').style.display = 'inline-flex';
-      }, 3000);
+      submitWish();
     }
   });
 
