@@ -212,13 +212,37 @@
   }
   .wish-done.visible { display: block; }
   .wishes-display {
-    margin-top: 36px; padding-top: 28px;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 18px 24px; margin-bottom: 36px; padding: 0;
   }
   .wish-card {
-    font-family: 'Source Serif 4', Georgia, serif; font-size: 15px;
-    color: #555; line-height: 1.8; padding: 8px 0;
-    text-align: center; max-width: 400px; margin: 0 auto;
+    position: relative;
+    background: rgba(242, 235, 213, 0.85);
+    border-radius: 2px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,0.08);
+    padding: 14px 20px 12px;
+    max-width: 200px;
+    transform: rotate(var(--wish-rotate, -1.5deg));
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .wish-card:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.12);
+  }
+  .wish-card::before {
+    content: '';
+    position: absolute;
+    top: -5px; left: 14px;
+    width: 36px; height: 11px;
+    background: rgba(156, 181, 209, 0.4);
+    transform: rotate(-2deg);
+    border-radius: 1px;
+  }
+  .wish-card-text {
+    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
+    font-size: 15px; font-weight: 700; line-height: 1.4;
+    color: #3d3520;
+    word-break: break-word;
   }
 
   /* ANIMATION */
@@ -375,10 +399,10 @@
 
 
   <div class="wish-section" id="wishSection">
+    <div class="wishes-display" id="wishesDisplay"></div>
     <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书..." autocomplete="off" enterkeyhint="send">
     <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
     <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
-    <div class="wishes-display" id="wishesDisplay"></div>
   </div>
 
   <div class="about-overlay" id="aboutOverlay" onclick="if(event.target===this)closeAbout()">
@@ -694,12 +718,16 @@
   });
 
   // CURATED WISHES
-  const curatedWishes = [];
+  const curatedWishes = ['活着', '明亮的夜晚', '天才女友'];
   function renderWishes() {
     const container = document.getElementById('wishesDisplay');
     if (curatedWishes.length === 0) { container.style.display = 'none'; return; }
-    container.style.display = 'block';
-    container.innerHTML = curatedWishes.map(w => '<div class="wish-card">' + w + '</div>').join('');
+    container.style.display = 'flex';
+    const rotations = [-2.5, 1.8, -1, 2.2, -0.5, 1.5, -3, 0.8];
+    container.innerHTML = curatedWishes.map((w, i) => {
+      const rot = rotations[i % rotations.length];
+      return '<div class="wish-card" style="--wish-rotate:' + rot + 'deg"><div class="wish-card-text">' + w + '</div></div>';
+    }).join('');
   }
   renderWishes();
 
