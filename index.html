@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>有求必应书屋</title>
+  <title><span class="hero-title-cn">有求必应书屋</span>
+    </title>
   <link rel="preload" href="fonts/ELEYANG-Bonjour-ExtraBold-subset.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -178,48 +179,6 @@
     color: #9CB5D1; font-weight: 600;
   }
 
-
-  /* WISH SECTION */
-  .wish-section {
-    max-width: 700px; margin: 0 auto; padding: 40px 24px 120px;
-    text-align: center;
-  }
-  .wish-input {
-    width: 100%; max-width: 500px; border: none;
-    border-bottom: 1px solid #d0d0d0;
-    background: transparent; padding: 10px 0; font-size: 15px;
-    font-family: 'Source Serif 4', Georgia, serif; color: #242424;
-    outline: none; transition: border-color 0.3s;
-    margin: 0 auto; display: block;
-  }
-  .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #bbb; font-size: 14px; }
-  .wish-submit {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: #9CB5D1; border: none;
-    border-radius: 18px; padding: 7px 20px; margin-top: 14px;
-    font-size: 14px; color: #fff;
-    font-family: 'Source Serif 4', Georgia, serif;
-    cursor: pointer; transition: all 0.3s ease;
-    letter-spacing: 0.06em;
-  }
-  .wish-submit:hover { background: #8aa4c0; }
-  .wish-done {
-    display: none; font-size: 15px; color: #9CB5D1;
-    font-family: sans-serif;
-    animation: fadeInUp 0.5s ease;
-  }
-  .wish-done.visible { display: block; }
-  .wishes-display {
-    margin-top: 36px; padding-top: 28px;
-    border-top: 1px solid rgba(0,0,0,0.06);
-  }
-  .wish-card {
-    font-family: 'Source Serif 4', Georgia, serif; font-size: 15px;
-    color: #555; line-height: 1.8; padding: 8px 0;
-    text-align: center; max-width: 400px; margin: 0 auto;
-  }
-
   /* ANIMATION */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -228,30 +187,17 @@
 
   /* DETAIL OVERLAY */
   .detail-overlay {
-    display: flex; align-items: flex-start; justify-content: center;
+    display: none; align-items: flex-start; justify-content: center;
     position: fixed; inset: 0; z-index: 100;
     background: rgba(0,0,0,0.45); overflow-y: auto;
     padding: 40px 20px;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
   }
-  .detail-overlay.active { opacity: 1; visibility: visible; }
+  .detail-overlay.active { display: flex; }
   .detail-inner {
     background: #fff; max-width: 680px; width: 100%;
     border-radius: 8px; padding: 56px 64px; position: relative;
     box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    transform: translateY(12px);
-    transition: transform 0.25s ease;
   }
-  .detail-overlay.active .detail-inner { transform: translateY(0); }
-  }
-  .detail-close {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; font-size: 28px;
-    cursor: pointer; color: #999; line-height: 1;
-    transition: color 0.2s;
-  }
-  .detail-close:hover { color: #242424; }
   .detail-title {
     font-family: 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700; line-height: 1.3;
@@ -288,9 +234,9 @@
   }
   @media (max-width: 600px) {
     /* NAV BAR */
-    .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 2px; }
-    .nav-brand { font-size: 14px; gap: 4px; width: 100%; justify-content: center; }
-    .nav-links { gap: 20px; justify-content: center; }
+    .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 4px; }
+    .nav-brand { font-size: 14px; gap: 4px; }
+    .nav-links { gap: 14px; }
     .nav-links a { font-size: 12px; letter-spacing: 0.04em; }
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
@@ -310,50 +256,6 @@
     margin: 0 auto 32px auto;
     border-radius: 1px;
   }
-
-  /* ABOUT OVERLAY */
-  .about-overlay {
-    display: flex; align-items: center; justify-content: center;
-    position: fixed; inset: 0; z-index: 200;
-    background: rgba(0,0,0,0.45); overflow-y: auto;
-    padding: 40px 20px;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-  }
-  .about-overlay.active { opacity: 1; visibility: visible; }
-  .about-inner {
-    background: #fff; max-width: 560px; width: 100%;
-    border-radius: 8px; padding: 56px 64px; position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    text-align: center;
-    transform: translateY(12px);
-    transition: transform 0.25s ease;
-  }
-  .about-overlay.active .about-inner { transform: translateY(0); }
-  }
-  .about-close {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; font-size: 28px;
-    cursor: pointer; color: #999; line-height: 1;
-    transition: color 0.2s;
-  }
-  .about-close:hover { color: #242424; }
-  .about-icon { font-size: 36px; margin-bottom: 24px; }
-  .about-text {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 16px; line-height: 1.9; color: #242424;
-    text-align: left;
-  }
-  .about-text p { margin-bottom: 1.4em; }
-  .about-text .about-highlight {
-    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 20px; font-weight: 700;
-  }
-  @media (max-width: 600px) {
-    .about-inner { padding: 40px 28px; }
-    .about-text { font-size: 15px; }
-    .about-text .about-highlight { font-size: 16px; }
-  }
 </style>
 </head>
 <body>
@@ -364,7 +266,7 @@
       </div>
       <div class="nav-links">
         <a href="https://www.xiaoyuzhoufm.com/podcast/6255a9fffca6e23c68be96df" target="_blank" rel="noopener">PODCAST</a>
-        <a href="#" onclick="openAbout(); return false">About</a>
+        <a href="#" onclick="return false">About</a>
       </div>
     </div>
   </nav>
@@ -379,36 +281,12 @@
     <div class="section-divider"></div>
     
     <div class="books-grid" id="booksGrid"></div>
-
-  </div>
-
-
-
-
-  <div class="wish-section" id="wishSection">
-    <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书...本书屋将不定期掉落最新笔记🪄" autocomplete="off" enterkeyhint="send">
-    <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
-    <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
-    <div class="wishes-display" id="wishesDisplay"></div>
-  </div>
-
-  <div class="about-overlay" id="aboutOverlay" onclick="if(event.target===this)closeAbout()">
-    <div class="about-inner">
-      <button class="about-close" onclick="closeAbout()">&times;</button>
-      <div class="about-icon">🪄</div>
-      <div class="about-text">
-        <p><span class="about-highlight">欢迎光临有求必应书屋！</span></p>
-        <p>线上书店是 AI Coding 的，读书笔记是古法手搓的。</p>
-        <p><span class="about-highlight">Enjoy~</span></p>
-      </div>
-    </div>
   </div>
 
   <div class="footer">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
 
   <div id="detailOverlay" class="detail-overlay">
     <div class="detail-inner" id="detailInner">
-      <button class="detail-close" onclick="closeDetail()">&times;</button>
       <div id="detailContent"></div>
     </div>
   </div>
@@ -651,18 +529,8 @@
     if (e.target === overlay) closeDetail();
   });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeDetail(); closeAbout(); }
+    if (e.key === 'Escape') closeDetail();
   });
-
-  // About overlay
-  function openAbout() {
-    document.getElementById('aboutOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeAbout() {
-    document.getElementById('aboutOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
   
   // Nav scroll shadow
   window.addEventListener('scroll', () => {
@@ -670,53 +538,7 @@
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 
-
-  // WISH FUNCTIONALITY
-  function submitWish() {
-    const input = document.getElementById('wishInput');
-    const wish = input.value.trim();
-    if (!wish) return;
-    fetch('https://formsubmit.co/ajax/26881ae89b19d5a1668b37568bccb62c', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        wish: wish,
-        _subject: '有求必应书屋 · 新愿望',
-        _captcha: 'false',
-        _template: 'table'
-      })
-    });
-    input.value = '';
-    input.style.display = 'none';
-    document.querySelector('.wish-submit').style.display = 'none';
-    document.getElementById('wishDone').classList.add('visible');
-    setTimeout(function() {
-      document.getElementById('wishDone').classList.remove('visible');
-      input.style.display = 'block';
-      document.querySelector('.wish-submit').style.display = 'inline-flex';
-    }, 3000);
-  }
-
-  document.getElementById('wishInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitWish();
-    }
-  });
-
-  // CURATED WISHES
-  const curatedWishes = [];
-  function renderWishes() {
-    const container = document.getElementById('wishesDisplay');
-    if (curatedWishes.length === 0) { container.style.display = 'none'; return; }
-    container.style.display = 'block';
-    container.innerHTML = curatedWishes.map(w => '<div class="wish-card">' + w + '</div>').join('');
-  }
-  renderWishes();
-
 </script>
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   
 </body>
 </html>
