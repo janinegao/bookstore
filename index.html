@@ -212,6 +212,13 @@
     transform: rotate(var(--wish-rotate, -1.5deg));
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  .wish-count {
+    position: absolute;
+    bottom: 4px; right: 8px;
+    font-size: 11px;
+    color: rgba(156, 181, 209, 0.8);
+    font-family: 'Source Serif 4', serif;
+  }
   .wish-card:hover {
     transform: rotate(0deg) translateY(-3px);
     box-shadow: 2px 4px 14px rgba(0,0,0,0.1);
@@ -755,7 +762,7 @@
   });
 
   // CURATED WISHES
-  const curatedWishes = ['《活着》', '《悉达多》', '《红与黑》', '《小城与不确定性的墙》', '《第一性原理》'];
+  const curatedWishes = [{name:'《活着》',count:1},{name:'《悉达多》',count:3},{name:'《红与黑》',count:1},{name:'《小城与不确定性的墙》',count:1},{name:'《第一性原理》',count:1}];
   function renderWishes() {
     const container = document.getElementById('wishesDisplay');
     if (curatedWishes.length === 0) { container.style.display = 'none'; return; }
@@ -763,7 +770,10 @@
     container.innerHTML = curatedWishes.map((w, i) => {
       const rotations = [-2.5, 1.8, -1, 2.2, -0.5, 1.5, -2, 0.8];
       const rot = rotations[i % rotations.length];
-      return '<div class="wish-card" style="--wish-rotate:' + rot + 'deg"><div class="wish-card-text">' + w + '</div></div>';
+      const name = typeof w === 'object' ? w.name : w;
+      const count = typeof w === 'object' ? w.count : 1;
+      const countHtml = count > 1 ? '<span class="wish-count">+' + count + '</span>' : '';
+      return '<div class="wish-card" style="--wish-rotate:' + rot + 'deg"><div class="wish-card-text">' + name + '</div>' + countHtml + '</div>';
     }).join('');
   }
   renderWishes();
