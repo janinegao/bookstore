@@ -141,10 +141,18 @@
     font-size: 10px;
     font-weight: 400;
     letter-spacing: 0.15em;
-    padding: 4px 10px 3px;
+    padding: 8px 10px 3px;
     border-radius: 1px;
     transform: rotate(-3deg);
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .wish-badge::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: rgba(156, 181, 209, 0.6);
+    border-radius: 1px 1px 0 0;
   }
   /* STICKER: cream paper strip + washi tape */
   .sticker-wrap {
