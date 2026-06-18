@@ -328,13 +328,6 @@
     transition: transform 0.25s ease;
   }
   .detail-overlay.active .detail-inner { transform: translateY(0); }
-  .detail-close {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; font-size: 28px;
-    cursor: pointer; color: #999; line-height: 1;
-    transition: color 0.2s;
-  }
-  .detail-close:hover { color: #242424; }
   .detail-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700; line-height: 1.3;
@@ -497,7 +490,6 @@
 
   <div id="detailOverlay" class="detail-overlay">
     <div class="detail-inner" id="detailInner">
-      <button class="detail-close" onclick="closeDetail()">&times;</button>
       <div id="detailContent"></div>
     </div>
   </div>
