@@ -53,9 +53,12 @@
 
   /* ABOUT PAGE */
   .about-page {
-    max-width: 680px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 64px 32px 120px;
+  }
+  .about-section-inner {
+    max-width: 680px;
   }
   .about-section {
     margin-bottom: 56px;
@@ -72,7 +75,7 @@
   }
   .about-text {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 17px; line-height: 1.9; color: #242424;
+    font-size: clamp(15px, 1.7vw, 17px); line-height: 1.9; color: #242424;
   }
   .about-text p { margin-bottom: 1.2em; }
 
@@ -91,18 +94,19 @@
   }
   .log-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 17px; font-weight: 400; color: #242424;
+    font-size: clamp(15px, 1.7vw, 17px); font-weight: 400; color: #242424;
     margin-bottom: 8px;
   }
   .log-body {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 16px; line-height: 1.9; color: #6b6b6b;
+    font-size: clamp(14px, 1.5vw, 16px); line-height: 1.9; color: #6b6b6b;
   }
   .log-body p { margin-bottom: 0.8em; }
 
   .about-back {
     display: inline-block;
     margin-top: 16px;
+    max-width: 1200px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 14px; color: #9CB5D1;
     text-decoration: none;
@@ -147,6 +151,7 @@
   <div class="about-page">
 
     <div class="about-section">
+      <div class="about-section-inner">
       <div class="about-section-title">店主寄语</div>
       <div class="about-text">
         <p>欢迎光临有求必应书屋！</p>
@@ -157,6 +162,7 @@
     </div>
 
     <div class="about-section">
+      <div class="about-section-inner">
       <div class="about-section-title">更新日志</div>
 
       <div class="log-entry">
@@ -187,6 +193,7 @@
         </div>
       </div>
 
+      </div>
     </div>
 
     <a href="index.html" class="about-back">← 返回书屋</a>
