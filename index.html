@@ -154,8 +154,8 @@
     color: #c0392b;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-left: 4px;
-    vertical-align: middle;
+    margin-right: 5px;
+    vertical-align: baseline;
   }
 
   .sticker-wrap {
@@ -717,7 +717,7 @@
         </div>
       </div>
       <div class="book-info">
-        <h3>${book.title}${book.isNew ? '<span class="new-badge">new</span>' : ''}</h3>
+        <h3>${book.isNew ? '<span class="new-badge">new</span>' : ''}${book.title}</h3>
         
       </div>`;
 
