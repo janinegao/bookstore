@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>有求必应书屋</title>
-  <link rel="preload" href="fonts/ELEYANG-Bonjour-ExtraBold-subset.woff2?v=2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/ELEYANG-Bonjour-ExtraBold-subset.woff2?v=3" as="font" type="font/woff2" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   @font-face {
     font-family: 'ELEYANG Bonjour';
-    src: url('fonts/ELEYANG-Bonjour-ExtraBold-subset.woff2?v=2') format('woff2'),
-         url('fonts/ELEYANG-Bonjour-ExtraBold-subset.ttf?v=2') format('truetype');
+    src: url('fonts/ELEYANG-Bonjour-ExtraBold-subset.woff2?v=3') format('woff2'),
+         url('fonts/ELEYANG-Bonjour-ExtraBold-subset.ttf?v=3') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -103,13 +103,21 @@
     text-align: center;
     text-transform: uppercase;
   }
+  .hero-slogan {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 16px; font-weight: 400;
+    color: #6b6b6b; line-height: 1.8;
+    margin-top: 20px; letter-spacing: 0.04em;
+  }
+  .hero-progress {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px; font-weight: 500;
+    color: #9CB5D1; letter-spacing: 0.06em;
+    margin-top: 8px;
+  }
 
   /* BOOKS GRID */
   .books-section { max-width: 1200px; margin: 0 auto; padding: 0 32px 120px; }
-  .section-label {
-    font-size: 13px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.08em; color: #9CB5D1; margin-bottom: 32px;
-  }
   .books-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px 28px; }
 
   /* BOOK CARD */
@@ -195,6 +203,26 @@
     color: #242424;
   }
   .book-author { display: none; }
+  /* SECTION HEADER (shared by bookshelf & wish wall) */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .section-label-cn {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px; font-weight: 700;
+    color: #242424; letter-spacing: 0.06em;
+  }
+  .section-label-en {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px; font-weight: 500;
+    color: #6b6b6b; letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
   /* FOOTER */
   .footer {
@@ -227,12 +255,6 @@
     font-size: 22px;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
     z-index: 10;
-  }
-  .wish-wall-title {
-    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 13px; color: #9CB5D1; letter-spacing: 0.15em;
-    text-transform: uppercase; margin-bottom: 20px;
-    opacity: 0.7;
   }
   .wishes-display {
     display: flex; flex-wrap: wrap; justify-content: center;
@@ -321,34 +343,57 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* DETAIL OVERLAY */
-  .detail-overlay {
-    display: flex; align-items: flex-start; justify-content: center;
-    position: fixed; inset: 0; z-index: 100;
-    background: rgba(0,0,0,0.45); overflow-y: auto;
-    padding: 40px 20px;
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
+  /* DETAIL PAGE */
+  .detail-page {
+    min-height: 100vh;
+    background: #ffffff;
   }
-  .detail-overlay.active { opacity: 1; visibility: visible; }
-  .detail-inner {
-    background: #fff; max-width: 680px; width: 100%;
-    border-radius: 8px; padding: 56px 64px; position: relative;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    transform: translateY(12px);
-    transition: transform 0.25s ease;
+  .detail-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 32px;
   }
-  .detail-overlay.active .detail-inner { transform: translateY(0); }
+  .detail-back {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    color: #9CB5D1;
+    margin-bottom: 32px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .detail-back:hover { opacity: 0.7; }
+  .detail-layout {
+    display: flex;
+    gap: 48px;
+  }
+  .detail-cover {
+    max-width: 280px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .detail-cover img {
+    width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  }
+  .detail-text {
+    flex: 1;
+    min-width: 0;
+  }
   .detail-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700; line-height: 1.3;
-    color: #242424; margin-bottom: 24px;
+    color: #242424; margin-bottom: 8px;
     letter-spacing: 0.02em;
   }
   .detail-author {
-    display: none;
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px; color: #6b6b6b;
+    margin-bottom: 20px;
   }
-.detail-lead {
+  .detail-lead {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     font-size: 20px; font-weight: 700; line-height: 1.4;
     color: #242424; margin-bottom: 36px;
@@ -359,7 +404,6 @@
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 15px; line-height: 1.8; color: #242424; text-align: left;
   }
-  .detail-note p:first-child { font-size: 15px; color: #242424; }
   .detail-note p { margin-bottom: 1.4em; text-indent: 0; }
   .detail-note p:first-child::first-letter {
     font-size: 3em; font-weight: 400; float: left;
@@ -387,22 +431,19 @@
     .hero-title { font-size: 28px; }
     .books-section { padding: 0 16px 80px; }
     .books-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
-    .detail-inner { padding: 40px 28px; }
-    .detail-quote-text { font-size: 16px; }
+    .detail-layout { flex-direction: column; align-items: center; }
+    .detail-cover { max-width: 200px; }
+    .detail-text { width: 100%; }
+    .detail-lead { font-size: 16px; }
     
-  }
-  .section-divider {
-    width: 60px;
-    height: 2px;
-    background: #A8C8E0;
-    margin: 0 auto 32px auto;
-    border-radius: 1px;
   }
 
 
 </style>
 </head>
 <body>
+<div id="mainPage">
+
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
       <div class="nav-brand">
@@ -416,11 +457,12 @@
     </div>
   </nav>
 
-  <div class="hero">
-    <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span>
-    </h1>
-    
-  </div>
+  <section class="hero">
+    <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span></h1>
+    <p class="hero-title-en">BookRoom of Requirement</p>
+    <p class="hero-slogan">读书笔记 也是一种时间的尺度</p>
+    <p class="hero-progress">更新至第 26 篇</p>
+  </section>
 
   <div class="books-section">
     <div class="section-divider"></div>
@@ -434,7 +476,10 @@
 
   <div class="wish-section" id="wishSection">
     <div class="wish-wall">
-      <div class="wish-wall-title">WISH WALL</div>
+      <div class="section-header" style="justify-content:center;margin-bottom:40px;">
+      <span class="section-label-cn">「许愿墙」</span>
+      <span class="section-label-en">WISH WALL</span>
+    </div>
       <div class="wishes-display" id="wishesDisplay"></div>
       <div class="wish-divider"></div>
       <div class="wish-input-area">
@@ -449,11 +494,43 @@
 
   <div class="footer">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
 
-  <div id="detailOverlay" class="detail-overlay">
-    <div class="detail-inner" id="detailInner">
-      <div id="detailContent"></div>
+</div><!-- end mainPage -->
+
+<!-- DETAIL PAGE -->
+<div id="detailPage" style="display:none">
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        🪄 <span class="nav-brand-text-full">BookRoom of Requirement</span><span class="nav-brand-text-short">BookRoom</span>
+      </div>
+      <div class="nav-links">
+        <a href="https://www.xiaoyuzhoufm.com/podcast/6255a9fffca6e23c68be96df" target="_blank" rel="noopener">PODCAST</a>
+        <a href="#wishSection">Wish Wall</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </nav>
+  <div class="detail-content">
+    <a class="detail-back" id="detailBack" href="#">← 返回书屋</a>
+    <div class="detail-layout">
+      <div class="detail-cover" id="detailCover"></div>
+      <div class="detail-text">
+        <h1 class="detail-title" id="detailTitle"></h1>
+        <p class="detail-author" id="detailAuthor"></p>
+        <div class="detail-lead" id="detailLead"></div>
+        <div class="detail-note" id="detailNote"></div>
+        <!-- 极简评论区 -->
+        <div style="margin-top:48px;padding-top:32px;border-top:1px solid rgba(0,0,0,0.06);">
+          <p style="font-family:'Noto Serif SC','Source Serif 4',Georgia,serif;font-size:14px;color:#6b6b6b;margin-bottom:12px;">留言</p>
+          <input type="text" id="commentInput" class="wish-input" placeholder="写点什么..." style="max-width:100%;">
+          <button id="commentSubmit" class="wish-submit" onclick="submitComment()">发送 →</button>
+          <div id="commentDone" class="wish-done">已发送 🪄</div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="footer">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
+</div>
 
   <script>
   const booksData = [
@@ -667,16 +744,13 @@
         </div>
       </div>
       <div class="book-info">
-        <h3>${book.isNew ? '<span class="new-badge">new</span>' : ''}${book.title}</h3>
+        <h3>${book.isNew ? '<span class="new-badge">new</span>' : ''}《${book.title}》</h3>
         
       </div>`;
 
-    card.addEventListener('click', () => openDetail(book));
+    card.addEventListener('click', () => { window.location.hash = 'book/' + book.id; });
     grid.appendChild(card);
   });
-
-  const overlay = document.getElementById('detailOverlay');
-  const detailInner = document.getElementById('detailInner');
 
   function formatNote(note) {
     if (!note) return '';
@@ -686,33 +760,85 @@
     if (!paragraphs.length) return '';
     return paragraphs.map((p, i) => {
       const text = p.trim().replace(/\n/g, '<br>');
-      if (i === 0) return '<p>' + text + '</p>';
       return '<p>' + text + '</p>';
     }).join('');
   }
 
-  function openDetail(book) {
-    const noteHTML = formatNote(book.note);
-    document.getElementById('detailContent').innerHTML =
-      '<div class="detail-title">' + (book.detailTitle || '\u300a' + book.title + '\u300b') + '</div>' +
-      '<div class="detail-author">' + book.author + '</div>' +
-      '<div class="detail-lead">' + book.quote + '</div>' +
-      '<div class="detail-note">' + noteHTML + '</div>';
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    detailInner.scrollTop = 0;
+  // Hash routing
+  var currentBookId = null;
+
+  function showMainPage() {
+    document.getElementById('mainPage').style.display = '';
+    document.getElementById('detailPage').style.display = 'none';
+    document.title = '有求必应书屋';
+    currentBookId = null;
   }
 
-  function closeDetail() {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
+  function showDetailPage(bookId) {
+    var book = booksData.find(function(b){ return b.id === bookId; });
+    if (!book) { showMainPage(); return; }
+    currentBookId = bookId;
+    document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('detailPage').style.display = '';
+    document.getElementById('detailCover').innerHTML =
+      '<img src="' + book.cover + '" alt="' + book.title + '">' +
+      (book.isWishNote ? '<span class="wish-badge">许愿笔记</span>' : '');
+    document.getElementById('detailTitle').textContent = book.detailTitle || '《' + book.title + '》';
+    document.getElementById('detailAuthor').textContent = book.author;
+    document.getElementById('detailLead').textContent = book.quote;
+    document.getElementById('detailNote').innerHTML = formatNote(book.note);
+    document.title = (book.detailTitle || '《' + book.title + '》') + ' - 有求必应书屋';
+    document.getElementById('commentInput').value = '';
+    document.getElementById('commentDone').classList.remove('visible');
+    document.getElementById('commentInput').style.display = '';
+    document.getElementById('commentSubmit').style.display = '';
+    window.scrollTo(0, 0);
   }
 
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeDetail();
+  function handleHash() {
+    var hash = window.location.hash.slice(1);
+    if (hash.startsWith('book/')) {
+      showDetailPage(hash.replace('book/', ''));
+    } else {
+      showMainPage();
+    }
+  }
+
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+
+  // Comment submit
+  function submitComment() {
+    var input = document.getElementById('commentInput');
+    var text = input.value.trim();
+    if (!text || !currentBookId) return;
+    var book = booksData.find(function(b){ return b.id === currentBookId; });
+    fetch('https://formsubmit.co/ajax/26881ae89b19d5a1668b37568bccb62c', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        comment: text,
+        book: book ? book.title : currentBookId,
+        _subject: '有求必应书屋 · 新评论 - 《' + (book ? book.title : currentBookId) + '》',
+        _captcha: 'false',
+        _template: 'table'
+      })
+    });
+    input.value = '';
+    input.style.display = 'none';
+    document.getElementById('commentSubmit').style.display = 'none';
+    document.getElementById('commentDone').classList.add('visible');
+    setTimeout(function() {
+      document.getElementById('commentDone').classList.remove('visible');
+      input.style.display = '';
+      document.getElementById('commentSubmit').style.display = 'inline-flex';
+    }, 3000);
+  }
+
+  document.getElementById('commentInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); submitComment(); }
   });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeDetail(); }
+
   });
 
 
