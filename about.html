@@ -53,15 +53,12 @@
 
   /* ABOUT PAGE */
   .about-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 64px 32px 120px;
-  }
-  .about-section-inner {
     max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
   }
   .about-section {
-    margin-bottom: 56px;
+    margin-bottom: 64px;
   }
   .about-section-title {
     font-family: 'Source Sans 3', sans-serif;
@@ -81,9 +78,13 @@
 
   /* UPDATE LOG */
   .log-entry {
-    margin-bottom: 32px;
-    padding-left: 16px;
-    border-left: 3px solid #e8e8e8;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #eee;
+  }
+  .log-entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
   .log-date {
     font-family: 'Source Sans 3', sans-serif;
@@ -105,12 +106,12 @@
 
   .about-back {
     display: inline-block;
-    margin-top: 16px;
-    max-width: 1200px;
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; color: #9CB5D1;
+    margin-top: 24px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px; color: #999;
     text-decoration: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     transition: color 0.2s;
   }
   .about-back:hover { color: #6b6b6b; }
@@ -151,7 +152,6 @@
   <div class="about-page">
 
     <div class="about-section">
-      <div class="about-section-inner">
       <div class="about-section-title">店主寄语</div>
       <div class="about-text">
         <p>欢迎光临有求必应书屋！</p>
@@ -162,7 +162,6 @@
     </div>
 
     <div class="about-section">
-      <div class="about-section-inner">
       <div class="about-section-title">更新日志</div>
 
       <div class="log-entry">
@@ -193,7 +192,6 @@
         </div>
       </div>
 
-      </div>
     </div>
 
     <a href="index.html" class="about-back">← 返回书屋</a>
