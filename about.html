@@ -3,7 +3,7 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About · 有求必应书屋</title>
@@ -32,14 +32,14 @@
   }
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Serif 4', Georgia, serif;
     font-size: 20px; font-weight: 600; color: #242424;
     white-space: nowrap;
   }
   .nav-brand-text-short { display: none; }
   .nav-links { display: flex; gap: 28px; flex-shrink: 0; }
   .nav-links a {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
     text-transform: uppercase; letter-spacing: 0.08em;
     text-decoration: none;
@@ -53,20 +53,13 @@
   }
   .about-banner-inner {
     max-width: 1200px; margin: 0 auto;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center;
   }
   .about-banner h1 {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 32px; font-weight: 700; color: #fff;
-    letter-spacing: 0.04em;
-  }
-  .about-back {
     font-family: 'Source Sans 3', sans-serif;
-    font-size: 13px; font-weight: 600;
-    color: #fff; text-decoration: none; letter-spacing: 0.05em;
-    opacity: 0.85; transition: opacity 0.2s;
+    font-size: 32px; font-weight: 700; color: #fff;
+    letter-spacing: 0.04em; text-transform: uppercase;
   }
-  .about-back:hover { opacity: 1; }
 
   /* TAB NAV */
   .about-tabs {
@@ -90,21 +83,30 @@
 
   /* CONTENT */
   .about-content {
-    max-width: 1200px; margin: 0 auto; padding: 48px 32px 120px;
+    max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px;
   }
   .about-panel { display: none; }
   .about-panel.active { display: block; }
   .about-greeting-title {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 700; color: #242424;
-    margin-bottom: 0.6em;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px; font-weight: 400; color: #242424;
+    margin-bottom: 8px;
   }
   .about-text {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; line-height: 1.4; color: #242424;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px; line-height: 1.8; color: #6b6b6b;
     max-width: 680px;
   }
-  .about-text p { margin-bottom: 0.6em; }
+  .about-text p { margin-bottom: 0.8em; }
+
+  /* BACK LINK */
+  .about-back {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: #9CB5D1; text-decoration: none; letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+  }
+  .about-back:hover { opacity: 0.7; }
 
   /* UPDATE LOG */
   .log-entry {
@@ -125,12 +127,12 @@
     margin-bottom: 8px;
   }
   .log-title {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 15px; font-weight: 400; color: #242424;
     margin-bottom: 8px;
   }
   .log-body {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 14px; line-height: 1.8; color: #6b6b6b;
   }
   .log-body p { margin-bottom: 0.8em; }
@@ -153,7 +155,7 @@
     .about-banner { padding: 32px 20px; }
     .about-banner h1 { font-size: 24px; }
     .about-tabs { padding: 0 20px; }
-    .about-content { padding: 32px 20px 80px; }
+    .about-content { padding: 32px 20px 60px; }
     .about-tab { font-size: 12px; padding: 12px 16px 10px; }
   }
 </style>
@@ -175,7 +177,6 @@
   <div class="about-banner">
     <div class="about-banner-inner">
       <h1>About</h1>
-      <a href="index.html" class="about-back">← 返回书屋</a>
     </div>
   </div>
 
@@ -186,11 +187,12 @@
 
   <div class="about-content">
     <div class="about-panel active" id="panel-greeting">
+      <div class="about-greeting-title">🪄 欢迎光临有求必应书屋！</div>
       <div class="about-text">
-        <h2 class="about-greeting-title">🪄 欢迎光临有求必应书屋！</h2>
         <p>线上书店是 AI Coding 的，读书笔记是古法手搓的。</p>
         <p>读书笔记是我衡量时间的尺度，目前进度是 26/篇。</p>
       </div>
+      <a href="index.html" class="about-back">← 返回书屋</a>
     </div>
 
     <div class="about-panel" id="panel-changelog">
