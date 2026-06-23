@@ -55,23 +55,54 @@
   .about-page {
     max-width: 680px;
     margin: 0 auto;
-    padding: 80px 32px 120px;
+    padding: 64px 32px 120px;
   }
-  .about-icon {
-    font-size: 48px;
-    margin-bottom: 32px;
+  .about-section {
+    margin-bottom: 56px;
+  }
+  .about-section-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: #9CB5D1;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
   }
   .about-text {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 15px; line-height: 1.8; color: #242424;
   }
-  .about-text p { margin-bottom: 1.4em; }
-  .about-text .about-highlight {
-    font-size: 17px; font-weight: 400;
+  .about-text p { margin-bottom: 1.2em; }
+
+  /* UPDATE LOG */
+  .log-entry {
+    margin-bottom: 32px;
+    padding-left: 16px;
+    border-left: 3px solid #e8e8e8;
   }
+  .log-date {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: #9CB5D1;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .log-title {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 15px; font-weight: 400; color: #242424;
+    margin-bottom: 8px;
+  }
+  .log-body {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px; line-height: 1.8; color: #6b6b6b;
+  }
+  .log-body p { margin-bottom: 0.8em; }
+
   .about-back {
     display: inline-block;
-    margin-top: 48px;
+    margin-top: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 14px; color: #9CB5D1;
     text-decoration: none;
@@ -95,7 +126,7 @@
     .nav-links a { font-size: 12px; letter-spacing: 0.04em; }
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
-    .about-page { padding: 48px 24px 80px; }
+    .about-page { padding: 40px 20px 80px; }
     .about-text { font-size: 15px; }
   }
 </style>
@@ -114,12 +145,50 @@
   </nav>
 
   <div class="about-page">
-    <div class="about-icon">🪄</div>
-    <div class="about-text">
-      <p><span class="about-highlight">欢迎光临有求必应书屋！</span></p>
-      <p>线上书店是 AI Coding 的，读书笔记是古法手搓的。</p>
-      <p><span class="about-highlight">Enjoy~</span></p>
+
+    <div class="about-section">
+      <div class="about-section-title">店主寄语</div>
+      <div class="about-text">
+        <p>欢迎光临有求必应书屋！</p>
+        <p>线上书店是 AI Coding 的，读书笔记是古法手搓的。</p>
+        <p>读书笔记是我衡量时间的尺度。</p>
+        <p>时间尺度为「篇」，目前进度是 26/篇。</p>
+      </div>
     </div>
+
+    <div class="about-section">
+      <div class="about-section-title">更新日志</div>
+
+      <div class="log-entry">
+        <div class="log-date">2026.06.23</div>
+        <div class="log-title">更新第二篇笔记《其中一个是谎言》</div>
+        <div class="log-body">
+          <p>周末2小时看完书，录制2小时，上班地铁在手记app上写的笔记。如笔记中提到的，我看过的第一本金爱烂作家的书是《外面是夏天》，当时惊叹于她用淡淡的笔调诉说生命不可承受之痛。一位擅长捕捉细节、戳人泪点的女作家。又多了一篇后续要补的笔记。</p>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-date">2026.06.22</div>
+        <div class="log-title">更新第一篇许愿笔记《悉达多》</div>
+        <div class="log-body">
+          <p>许愿机制是上下班的地铁上灵机一动想到的，因为没有互动的内容是不完整的。截至目前我已收到 15+ 许愿，其中有 3 个许愿是《悉达多》。</p>
+          <p>每篇笔记都是我非常个人的阅读感受，非典型书评，也没有 AI 痕迹。</p>
+          <p>希望收到许愿笔记的你开心~</p>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-date">2026.06.12</div>
+        <div class="log-title">许愿墙</div>
+        <div class="log-body">
+          <p>本周最大更新是灵机一动上线了许愿墙。</p>
+          <p>对于表达者来说，在发布作品之后获得反馈是一件非常美妙的事情。截至目前本书屋共收到 13 条许愿，其中有 3 位同学写了《悉达多》。很巧，许愿墙上的书，有好几本我是读过的，只不过当时还没有及时写笔记的习惯，比如《悉达多》（有播客）《活着》以及《白夜行》。我会先更新《悉达多》的笔记，其余书目根据时间精力动态更新。</p>
+          <p>谢谢访问 &amp; 谢谢捉虫</p>
+        </div>
+      </div>
+
+    </div>
+
     <a href="index.html" class="about-back">← 返回书屋</a>
   </div>
 
