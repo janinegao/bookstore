@@ -233,83 +233,6 @@
   .footer-brand {
     color: #9CB5D1; font-weight: 600;
   }
-
-
-  /* WISH SECTION */
-  .wish-section {
-    max-width: 740px; margin: 0 auto;
-    padding: 48px 24px 120px;
-    text-align: center;
-  }
-  .wish-wall {
-    background: rgba(235, 228, 212, 0.35);
-    border-radius: 12px;
-    padding: 28px 24px 24px;
-    position: relative;
-  }
-  .wish-wall::after {
-    content: '📌';
-    position: absolute;
-    top: -14px; left: 50%;
-    transform: translateX(-50%) rotate(8deg);
-    font-size: 22px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-    z-index: 10;
-  }
-  .wishes-display {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 14px 18px; margin-bottom: 24px; padding: 0;
-    min-height: 0;
-  }
-  .wish-card {
-    position: relative;
-    background: rgba(248, 243, 230, 0.95);
-    border-radius: 2px;
-    box-shadow: 1px 2px 6px rgba(0,0,0,0.07);
-    padding: 12px 18px 10px;
-    max-width: 180px;
-    transform: rotate(var(--wish-rotate, -1.5deg));
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .wish-count {
-    position: absolute;
-    top: -6px; right: -8px;
-    background: rgba(156, 181, 209, 0.85);
-    color: #fff;
-    font-size: 11px;
-    font-family: 'Source Serif 4', serif;
-    padding: 1px 6px;
-    border-radius: 10px;
-    line-height: 1.5;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  .wish-card:hover {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: 2px 4px 14px rgba(0,0,0,0.1);
-  }
-  .wish-card::before {
-    content: '';
-    position: absolute;
-    top: -4px; left: 12px;
-    width: 32px; height: 10px;
-    background: rgba(156, 181, 209, 0.35);
-    transform: rotate(-2deg);
-    border-radius: 1px;
-  }
-  .wish-card-text {
-    font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 14px; font-weight: 700; line-height: 1.4;
-    color: #3d3520;
-    word-break: break-word;
-  }
-  .wish-divider {
-    width: 40px; height: 1px;
-    background: rgba(156, 181, 209, 0.25);
-    margin: 0 auto 18px;
-  }
-  .wish-input-area {
-    padding-top: 0;
-  }
   .wish-input {
     width: 100%; max-width: 440px; border: none;
     border-bottom: 1px solid rgba(156, 181, 209, 0.35);
@@ -442,24 +365,6 @@
     <div class="books-grid" id="booksGrid"></div>
 
   </div>
-
-
-
-
-  <div class="wish-section" id="wishSection">
-    <div class="wish-wall">
-      <div class="section-header" style="justify-content:center;margin-bottom:40px;">
-      <span class="section-label-cn">「许愿墙」</span>
-      <span class="section-label-en">WISH WALL</span>
-    </div>
-      <div class="wishes-display" id="wishesDisplay"></div>
-      <div class="wish-divider"></div>
-      <div class="wish-input-area">
-        <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书...本书屋将不定期掉落最新笔记🪄" autocomplete="off" enterkeyhint="send">
-        <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
-        <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
-      </div>
-    </div>
   </div>
 
   </div>
@@ -813,57 +718,6 @@
     const nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
   });
-
-
-  // WISH FUNCTIONALITY
-  function submitWish() {
-    const input = document.getElementById('wishInput');
-    const wish = input.value.trim();
-    if (!wish) return;
-    fetch('https://formsubmit.co/ajax/26881ae89b19d5a1668b37568bccb62c', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        wish: wish,
-        _subject: '有求必应书屋 · 新愿望',
-        _captcha: 'false',
-        _template: 'table'
-      })
-    });
-    input.value = '';
-    input.style.display = 'none';
-    document.querySelector('.wish-submit').style.display = 'none';
-    document.getElementById('wishDone').classList.add('visible');
-    setTimeout(function() {
-      document.getElementById('wishDone').classList.remove('visible');
-      input.style.display = 'block';
-      document.querySelector('.wish-submit').style.display = 'inline-flex';
-    }, 3000);
-  }
-
-  document.getElementById('wishInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitWish();
-    }
-  });
-
-  // CURATED WISHES
-  const curatedWishes = [{name:'《活着》',count:1},{name:'《悉达多》',count:3},{name:'《白夜行》',count:2},{name:'《红与黑》',count:1},{name:'《第一性原理》',count:1},{name:'《鼠疫》',count:1},{name:'《事实》',count:1},{name:'《明亮的夜晚🌙🌙🌙》',count:1},{name:'《非暴力沟通》',count:2},{name:'《早上好，岛上好》',count:1},{name:'《三体》',count:1}];
-  function renderWishes() {
-    const container = document.getElementById('wishesDisplay');
-    if (curatedWishes.length === 0) { container.style.display = 'none'; return; }
-    container.style.display = 'flex';
-    container.innerHTML = curatedWishes.map((w, i) => {
-      const rotations = [-2.5, 1.8, -1, 2.2, -0.5, 1.5, -2, 0.8];
-      const rot = rotations[i % rotations.length];
-      const name = typeof w === 'object' ? w.name : w;
-      const count = typeof w === 'object' ? w.count : 1;
-      const countHtml = count > 1 ? '<span class="wish-count">+' + count + '</span>' : '';
-      return '<div class="wish-card" style="--wish-rotate:' + rot + 'deg"><div class="wish-card-text">' + name + '</div>' + countHtml + '</div>';
-    }).join('');
-  }
-  renderWishes();
 
 </script>
 
