@@ -13,7 +13,7 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: linear-gradient(175deg, #12162a 0%, #1a2340 40%, #1e2845 100%); color: #e8e4df;
+    background: linear-gradient(170deg, #161b2e 0%, #1c2538 35%, #1f2a3c 70%, #1a2233 100%); color: #d4dde8;
     line-height: 1.6; -webkit-font-smoothing: antialiased;
     min-height: 100vh; overflow-x: hidden;
   }
@@ -31,7 +31,7 @@
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(18, 22, 42, 0.85);
+    background: rgba(22, 27, 46, 0.88);
     border-bottom: 1px solid rgba(255,255,255,0.06);
     transition: box-shadow 0.3s;
   }
@@ -43,7 +43,7 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #e8e4df;
+    font-size: 20px; font-weight: 600; color: #c8d5e2;
     white-space: nowrap; cursor: pointer;
   }
   .nav-brand-text-short { display: none; }
@@ -65,7 +65,7 @@
     position: absolute;
     width: 2px; height: 2px;
     border-radius: 50%;
-    background: rgba(220, 215, 200, 0.35);
+    background: rgba(180, 200, 220, 0.3);
     animation: twinkle var(--dur) ease-in-out infinite;
     animation-delay: var(--delay);
   }
@@ -90,7 +90,7 @@
   .wish-header-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700;
-    color: #e8e4df;
+    color: #c8d5e2;
     letter-spacing: 0.06em;
     margin-bottom: 8px;
   }
@@ -115,7 +115,7 @@
     border-radius: 2px;
     padding: 14px 22px 12px;
     cursor: default;
-    box-shadow: 0 2px 20px rgba(255, 210, 130, 0.12), 0 0 48px rgba(255, 200, 110, 0.06);
+    box-shadow: 0 2px 16px rgba(156, 181, 209, 0.08), 0 0 32px rgba(156, 181, 209, 0.04);
     transition: box-shadow 0.4s ease;
     animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
     animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
@@ -130,7 +130,7 @@
     border-radius: 1px;
   }
   .wish-card:hover {
-    box-shadow: 0 8px 36px rgba(255, 210, 130, 0.25), 0 0 72px rgba(255, 200, 110, 0.1);
+    box-shadow: 0 6px 28px rgba(156, 181, 209, 0.15), 0 0 56px rgba(156, 181, 209, 0.06);
     z-index: 10;
   }
   .wish-card-text {
@@ -142,7 +142,7 @@
   }
   .wish-count {
     display: inline-block;
-    background: rgba(156,181,209,0.2); color: #5a7a9a;
+    background: rgba(156,181,209,0.25); color: #9CB5D1;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 9px; font-weight: 600;
     padding: 1px 6px; border-radius: 8px;
@@ -189,7 +189,7 @@
     border-bottom: 1px solid rgba(156, 181, 209, 0.2);
     background: transparent; padding: 12px 0; font-size: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    color: #e8e4df;
+    color: #c8d5e2;
     outline: none; transition: border-color 0.3s;
     text-align: center;
   }
