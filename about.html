@@ -46,57 +46,51 @@
   }
   .nav-links a:hover { color: #9CB5D1; }
 
-  /* CONTENT */
-  .about-container {
-    max-width: 1200px; margin: 0 auto; padding: 0 32px;
+  /* ===== HERO / 店主寄语 ===== */
+  .hero {
+    text-align: center;
+    padding: 96px 32px 80px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 28px; font-weight: 400; color: #242424;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    letter-spacing: 0.04em;
+  }
+  .hero-text {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px; line-height: 2.2; color: #999;
   }
 
-  /* SECTION */
-  .about-section {
-    padding: 64px 0 56px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+  /* ===== 许愿墙 ===== */
+  .wish-section {
+    background: rgba(156,181,209,0.04);
+    padding: 64px 32px 72px;
   }
-  .about-section:last-child {
-    border-bottom: none;
-    padding-bottom: 80px;
+  .wish-inner {
+    max-width: 860px; margin: 0 auto;
   }
-  .section-label {
+  .wish-label {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 11px; font-weight: 600;
     color: #9CB5D1; letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-
-  /* 店主寄语 */
-  .greeting-title {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 22px; font-weight: 400; color: #242424;
-    line-height: 1.6;
-    max-width: 680px;
-    margin-bottom: 24px;
-  }
-  .greeting-text {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; line-height: 1.8; color: #6b6b6b;
-    max-width: 680px;
-  }
-  .greeting-text p { margin-bottom: 0.6em; }
-
-  /* 许愿墙 */
-  .wish-wall {
-    max-width: 680px;
+    margin-bottom: 28px;
+    text-align: center;
   }
   .wishes-display {
-    display: flex; flex-wrap: wrap; gap: 14px;
-    justify-content: flex-start;
-    margin-bottom: 32px;
+    display: flex; flex-wrap: wrap; gap: 16px;
+    justify-content: center;
+    margin-bottom: 36px;
   }
   .wish-card {
     position: relative;
-    background: rgba(156,181,209,0.08);
-    border: 1px solid rgba(156,181,209,0.2);
-    padding: 12px 18px 10px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(156,181,209,0.18);
+    padding: 14px 22px 12px;
     border-radius: 2px;
     transform: rotate(var(--wish-rotate, -1.5deg));
     transition: all 0.3s ease;
@@ -129,14 +123,15 @@
     margin-left: 6px; vertical-align: middle;
   }
   .wish-input-area {
-    padding-top: 0;
+    text-align: center;
   }
   .wish-input {
-    width: 100%; max-width: 440px; border: none;
-    border-bottom: 1px solid rgba(156,181,209,0.35);
+    width: 320px; border: none;
+    border-bottom: 1px solid rgba(156,181,209,0.4);
     background: transparent; padding: 10px 0; font-size: 15px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif; color: #242424;
     outline: none; transition: border-color 0.3s;
+    text-align: center;
   }
   .wish-input:focus { border-color: #9CB5D1; }
   .wish-input::placeholder { color: #bbb; font-size: 14px; }
@@ -154,31 +149,41 @@
     display: none; font-size: 14px; color: #9CB5D1;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     animation: fadeInUp 0.5s ease;
+    text-align: center;
   }
   .wish-done.visible { display: block; }
 
-  /* 更新日志 */
-  .log-entry {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid #eee;
-    max-width: 680px;
+  /* ===== 更新日志 ===== */
+  .log-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 64px 32px 80px;
   }
-  .log-entry:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+  .log-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px; font-weight: 600;
+    color: #9CB5D1; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .log-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0 28px;
+    margin-bottom: 32px;
+    max-width: 680px;
   }
   .log-date {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 13px; font-weight: 600;
     color: #9CB5D1;
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+    padding-top: 2px;
   }
+  .log-content {}
   .log-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 17px; font-weight: 400; color: #242424;
-    margin-bottom: 8px;
+    font-size: 16px; font-weight: 400; color: #242424;
+    margin-bottom: 6px;
   }
   .log-body {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
@@ -207,10 +212,13 @@
     .nav-links a { font-size: 12px; letter-spacing: 0.04em; }
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
-    .about-container { padding: 0 20px; }
-    .about-section { padding: 40px 0 36px; }
-    .greeting-title { font-size: 18px; }
+    .hero { padding: 56px 20px 48px; }
+    .hero-title { font-size: 20px; }
+    .wish-section { padding: 40px 20px 48px; }
     .wishes-display { gap: 10px; }
+    .wish-input { width: 260px; }
+    .log-section { padding: 40px 20px 56px; }
+    .log-entry { grid-template-columns: 1fr; gap: 4px; }
   }
 </style>
 </head>
@@ -227,46 +235,47 @@
   </div>
 </nav>
 
-<div class="about-container">
+<!-- 店主寄语 Hero -->
+<div class="hero">
+  <div class="hero-title">读书笔记<br>也是一种时间的尺度</div>
+  <div class="hero-text">
+    线上书店是 AI Coding 的<br>
+    读书笔记是古法手搓的<br>
+    当前进度 26 篇
+  </div>
+</div>
 
-  <!-- 店主寄语 -->
-  <div class="about-section">
-    <div class="section-label">店主寄语</div>
-    <div class="greeting-title">读书笔记也是一种时间的尺度</div>
-    <div class="greeting-text">
-      <p>线上书店是 AI Coding 的</p>
-      <p>读书笔记是古法手搓的</p>
-      <p>目前进度 26 篇</p>
+<!-- 许愿墙 -->
+<div class="wish-section">
+  <div class="wish-inner">
+    <div class="wish-label">许愿墙 Wish Wall</div>
+    <div class="wishes-display" id="wishesDisplay"></div>
+    <div class="wish-input-area">
+      <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书..." autocomplete="off" enterkeyhint="send">
+      <br>
+      <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
+      <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
     </div>
   </div>
+</div>
 
-  <!-- 许愿墙 -->
-  <div class="about-section">
-    <div class="section-label">许愿墙 Wish Wall</div>
-    <div class="wish-wall">
-      <div class="wishes-display" id="wishesDisplay"></div>
-      <div class="wish-input-area">
-        <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书...本书屋将不定期掉落最新笔记🪄" autocomplete="off" enterkeyhint="send">
-        <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
-        <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
-      </div>
-    </div>
-  </div>
+<!-- 更新日志 -->
+<div class="log-section">
+  <div class="log-label">更新日志</div>
 
-  <!-- 更新日志 -->
-  <div class="about-section">
-    <div class="section-label">更新日志</div>
-    
-    <div class="log-entry">
-      <div class="log-date">2026.06.23</div>
+  <div class="log-entry">
+    <div class="log-date">2026.06.23</div>
+    <div class="log-content">
       <div class="log-title">更新第二篇许愿笔记《其中一个是谎言》</div>
       <div class="log-body">
         <p>周末2小时看完书，录制2小时，上班地铁在手记app上写的笔记。如笔记中提到的，我看过的第一本金爱烂作家的书是《外面是夏天》，当时惊叹于她用淡淡的笔调诉说生命不可承受之痛。一位擅长捕捉细节、戳人泪点的女作家。又多了一篇后续要补的笔记。</p>
       </div>
     </div>
+  </div>
 
-    <div class="log-entry">
-      <div class="log-date">2026.06.22</div>
+  <div class="log-entry">
+    <div class="log-date">2026.06.22</div>
+    <div class="log-content">
       <div class="log-title">更新第一篇许愿笔记《悉达多》</div>
       <div class="log-body">
         <p>许愿机制是上下班的地铁上灵机一动想到的，因为没有互动的内容是不完整的。截至目前我已收到 15+ 许愿，其中有 3 个许愿是《悉达多》。</p>
@@ -274,9 +283,11 @@
         <p>希望收到许愿笔记的你开心~</p>
       </div>
     </div>
+  </div>
 
-    <div class="log-entry">
-      <div class="log-date">2026.06.12</div>
+  <div class="log-entry">
+    <div class="log-date">2026.06.12</div>
+    <div class="log-content">
       <div class="log-title">许愿墙上线</div>
       <div class="log-body">
         <p>本周最大更新是灵机一动上线了许愿墙。</p>
@@ -285,19 +296,16 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div class="footer">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
 
 <script>
-  // Nav scroll shadow
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 
-  // WISH FUNCTIONALITY
   function submitWish() {
     const input = document.getElementById('wishInput');
     const wish = input.value.trim();
@@ -330,7 +338,6 @@
     }
   });
 
-  // CURATED WISHES
   const curatedWishes = [{name:'《活着》',count:1},{name:'《悉达多》',count:3},{name:'《白夜行》',count:2},{name:'《红与黑》',count:1},{name:'《第一性原理》',count:1},{name:'《鼠疫》',count:1},{name:'《事实》',count:1},{name:'《明亮的夜晚🌙🌙🌙》',count:1},{name:'《非暴力沟通》',count:2},{name:'《早上好，岛上好》',count:1},{name:'《三体》',count:1}];
   function renderWishes() {
     const container = document.getElementById('wishesDisplay');
