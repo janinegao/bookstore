@@ -473,7 +473,7 @@
 
   </div>
 
-  <div class="footer">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
+  <div class="footer" id="mainFooter">&copy; 2026 <span class="footer-brand">BookRoom of Requirement</span> &middot; Every book deserves a note.</div>
 
 </div><!-- end mainPage -->
 
@@ -745,6 +745,7 @@
 
   function showMainPage() {
     document.getElementById('mainPage').style.display = '';
+    document.getElementById('mainFooter').style.display = '';
     document.getElementById('detailPage').style.display = 'none';
     document.title = '有求必应书屋';
     currentBookId = null;
@@ -755,6 +756,7 @@
     if (!book) { showMainPage(); return; }
     currentBookId = bookId;
     document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('mainFooter').style.display = 'none';
     document.getElementById('detailPage').style.display = '';
     document.getElementById('detailTitle').textContent = book.detailTitle || '《' + book.title + '》';
     document.getElementById('detailAuthor').textContent = book.author;
