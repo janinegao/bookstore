@@ -27,60 +27,39 @@
     font-display: block;
   }
 
-  /* NAV - Shakespeare and Company style */
+  /* NAV */
   .nav {
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.9);
     border-bottom: 1px solid rgba(0,0,0,0.06);
     transition: box-shadow 0.3s;
   }
   .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
   .nav-inner {
     max-width: 1400px; margin: 0 auto; padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 20px; font-weight: 600; color: #242424;
+    white-space: nowrap;
+  }
+  .nav-brand-icon {
+    width: 32px; height: 32px; background: #A8C8E0; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    position: relative;
+    color: #fff; font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 700;
   }
-  .nav-hamburger {
-    position: absolute; left: 32px; top: 50%; transform: translateY(-50%);
-    cursor: pointer; width: 24px; height: 18px;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .nav-hamburger span {
-    display: block; width: 100%; height: 2px;
-    background: #242424; border-radius: 1px;
-    transition: all 0.3s ease;
-  }
-  .nav-hamburger:hover span { background: #9CB5D1; }
-  .nav-brand-center {
+  .nav-links { display: flex; gap: 28px; flex-shrink: 0; }
+  .nav-brand-text-short { display: none; }
+  .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 18px; font-weight: 700; color: #242424;
-    letter-spacing: 0.08em; white-space: nowrap;
-    cursor: pointer; text-decoration: none;
+    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
+    text-decoration: none;
   }
-  .nav-brand-center:hover { color: #9CB5D1; }
-  .nav-menu {
-    position: absolute; left: 32px; top: 100%;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 8px;
-    padding: 8px 0;
-    min-width: 140px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    display: none; z-index: 200;
-  }
-  .nav-menu.open { display: block; }
-  .nav-menu a {
-    display: block; padding: 10px 20px;
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; color: #6b6b6b; font-weight: 500;
-    text-decoration: none; transition: all 0.2s;
-    letter-spacing: 0.04em;
-  }
-  .nav-menu a:hover { color: #9CB5D1; background: rgba(156,181,209,0.06); }
-  .nav-menu a.active { color: #9CB5D1; }
+  .nav-links a:hover { color: #9CB5D1; }
 
   /* PAGE *//* PAGE */
   .page {
@@ -246,10 +225,10 @@
   }
 
   @media (max-width: 600px) {
-    .nav-inner { padding: 12px 16px; }
-    .nav-hamburger { left: 16px; }
-    .nav-brand-center { font-size: 15px; letter-spacing: 0.06em; }
-    .nav-menu { left: 16px; }
+    .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 2px; }
+    .nav-brand { font-size: 14px; gap: 4px; width: 100%; justify-content: center; }
+    .nav-links { gap: 20px; justify-content: center; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.04em; }
     .page { padding: 0 20px; }
     .wish-header { padding: 56px 0 12px; }
     .wish-header-title { font-size: 22px; }
@@ -265,13 +244,12 @@
 
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
-    <div class="nav-hamburger" id="navHamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
+    <div class="nav-brand" style="cursor:pointer;" onclick="window.location.href='index.html'">
+      🪄 <span class="nav-brand-text-full">BookRoom of Requirement</span><span class="nav-brand-text-short">BookRoom</span>
     </div>
-    <a class="nav-brand-center" onclick="window.location.href='index.html'" href="javascript:void(0)">有求必应书屋</a>
-    <div class="nav-menu" id="navMenu">
+    <div class="nav-links">
       <a href="index.html">首页</a>
-      <a href="wish.html" class="active">许愿墙</a>
+      <a href="wish.html">许愿墙</a>
       <a href="about.html">关于我</a>
     </div>
   </div>
@@ -425,17 +403,6 @@
   });
 
   
-  function toggleMenu() {
-    var menu = document.getElementById('navMenu');
-    menu.classList.toggle('open');
-  }
-  document.addEventListener('click', function(e) {
-    var hamburger = document.getElementById('navHamburger');
-    var menu = document.getElementById('navMenu');
-    if (menu && hamburger && !hamburger.contains(e.target) && !menu.contains(e.target)) {
-      menu.classList.remove('open');
-    }
-  });
   window.addEventListener('scroll', function() {
     var nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
