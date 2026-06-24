@@ -494,7 +494,6 @@
     <a class="detail-back" id="detailBack" href="#">← 返回书屋</a>
     <div class="detail-text">
       <h1 class="detail-title" id="detailTitle"></h1>
-      <p class="detail-author" id="detailAuthor"></p>
       <div class="detail-lead" id="detailLead"></div>
       <div class="detail-note" id="detailNote"></div>
       <!-- 极简评论区 -->
@@ -759,7 +758,6 @@
     document.getElementById('mainFooter').style.display = 'none';
     document.getElementById('detailPage').style.display = '';
     document.getElementById('detailTitle').textContent = book.detailTitle || '《' + book.title + '》';
-    document.getElementById('detailAuthor').textContent = book.author;
     document.getElementById('detailLead').textContent = book.quote;
     document.getElementById('detailNote').innerHTML = formatNote(book.note);
     document.title = (book.detailTitle || '《' + book.title + '》') + ' - 有求必应书屋';
