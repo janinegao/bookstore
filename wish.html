@@ -13,7 +13,7 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #1a1f2e; color: #e8e4df;
+    background: linear-gradient(175deg, #0a0d14 0%, #111827 40%, #151c2c 100%); color: #e8e4df;
     line-height: 1.6; -webkit-font-smoothing: antialiased;
     min-height: 100vh; overflow-x: hidden;
   }
@@ -31,7 +31,7 @@
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(26, 31, 46, 0.85);
+    background: rgba(10, 13, 20, 0.82);
     border-bottom: 1px solid rgba(255,255,255,0.06);
     transition: box-shadow 0.3s;
   }
@@ -65,7 +65,7 @@
     position: absolute;
     width: 2px; height: 2px;
     border-radius: 50%;
-    background: rgba(200, 210, 230, 0.4);
+    background: rgba(220, 215, 200, 0.35);
     animation: twinkle var(--dur) ease-in-out infinite;
     animation-delay: var(--delay);
   }
@@ -115,7 +115,7 @@
     border-radius: 2px;
     padding: 14px 22px 12px;
     cursor: default;
-    box-shadow: 0 2px 16px rgba(255, 220, 150, 0.1), 0 0 40px rgba(255, 220, 150, 0.05);
+    box-shadow: 0 2px 20px rgba(255, 210, 130, 0.12), 0 0 48px rgba(255, 200, 110, 0.06);
     transition: box-shadow 0.4s ease;
     animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
     animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
@@ -130,7 +130,7 @@
     border-radius: 1px;
   }
   .wish-card:hover {
-    box-shadow: 0 8px 32px rgba(255, 220, 150, 0.22), 0 0 60px rgba(255, 220, 150, 0.08);
+    box-shadow: 0 8px 36px rgba(255, 210, 130, 0.25), 0 0 72px rgba(255, 200, 110, 0.1);
     z-index: 10;
   }
   .wish-card-text {
