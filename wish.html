@@ -13,7 +13,8 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: linear-gradient(170deg, #161b2e 0%, #1c2538 35%, #1f2a3c 70%, #1a2233 100%); color: #d4dde8;
+    background: #111018;
+    color: #c5bfb4;
     line-height: 1.6; -webkit-font-smoothing: antialiased;
     min-height: 100vh; overflow-x: hidden;
   }
@@ -26,16 +27,16 @@
     font-display: block;
   }
 
-  /* NAV - dark variant */
+  /* NAV */
   .nav {
     position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(14px) saturate(180%);
-    -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(22, 27, 46, 0.88);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    background: rgba(17, 16, 24, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.3); }
+  .nav.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,0.4); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -43,18 +44,28 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #c8d5e2;
+    font-size: 20px; font-weight: 600; color: #b8b0a4;
     white-space: nowrap; cursor: pointer;
   }
   .nav-brand-text-short { display: none; }
   .nav-links { display: flex; gap: 28px; flex-shrink: 0; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #8a92a6; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: #6b665e; font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
   .nav-links a:hover { color: #9CB5D1; }
   .nav-links a.active { color: #9CB5D1; }
+
+  /* SKY - layered depth */
+  .sky-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(40, 30, 55, 0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(30, 25, 50, 0.3) 0%, transparent 60%),
+      linear-gradient(175deg, #0e0c16 0%, #151320 30%, #181528 60%, #111018 100%);
+  }
 
   /* STARS */
   .stars {
@@ -63,15 +74,16 @@
   }
   .star {
     position: absolute;
-    width: 2px; height: 2px;
     border-radius: 50%;
-    background: rgba(180, 200, 220, 0.3);
+    background: rgba(225, 218, 200, 0.5);
     animation: twinkle var(--dur) ease-in-out infinite;
     animation-delay: var(--delay);
   }
+  .star.warm { background: rgba(240, 210, 160, 0.6); }
+  .star.bright { box-shadow: 0 0 4px rgba(225, 218, 200, 0.3); }
   @keyframes twinkle {
-    0%, 100% { opacity: 0.15; }
-    50% { opacity: 0.7; }
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.8; }
   }
 
   /* PAGE */
@@ -84,65 +96,69 @@
 
   /* HEADER */
   .wish-header {
-    padding: 80px 0 40px;
+    padding: 80px 0 48px;
     text-align: center;
   }
   .wish-header-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 28px; font-weight: 700;
-    color: #c8d5e2;
-    letter-spacing: 0.06em;
-    margin-bottom: 8px;
+    font-size: 26px; font-weight: 700;
+    color: #c5bfb4;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
   }
   .wish-header-sub {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 13px; color: #5a6480;
-    letter-spacing: 0.08em;
+    font-size: 12px; color: #605b54;
+    letter-spacing: 0.12em;
   }
 
   /* WISHES SKY */
   .wishes-sky {
     position: relative;
-    min-height: 420px;
+    min-height: 440px;
     margin-bottom: 48px;
     padding: 20px 0;
   }
 
-  /* WISH CARD - floating glowing paper */
+  /* WISH CARD - translucent with warm candlelight */
   .wish-card {
     position: absolute;
-    background: rgba(245, 240, 228, 0.93);
+    background: rgba(245, 238, 220, 0.07);
+    border: 1px solid rgba(220, 195, 150, 0.1);
     border-radius: 2px;
-    padding: 14px 22px 12px;
+    padding: 16px 24px 14px;
     cursor: default;
-    box-shadow: 0 2px 16px rgba(156, 181, 209, 0.08), 0 0 32px rgba(156, 181, 209, 0.04);
-    transition: box-shadow 0.4s ease;
-    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 20px rgba(200, 165, 100, 0.06), 0 0 50px rgba(200, 165, 100, 0.03);
+    transition: box-shadow 0.5s ease, background 0.5s ease;
+    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 1s ease both;
     animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
   }
   .wish-card::before {
     content: '';
     position: absolute;
-    top: -5px; left: 16px;
-    width: 28px; height: 9px;
-    background: rgba(156, 181, 209, 0.22);
+    top: -5px; left: 18px;
+    width: 26px; height: 9px;
+    background: rgba(200, 175, 130, 0.15);
     transform: rotate(-1.5deg);
     border-radius: 1px;
   }
   .wish-card:hover {
-    box-shadow: 0 6px 28px rgba(156, 181, 209, 0.15), 0 0 56px rgba(156, 181, 209, 0.06);
+    background: rgba(245, 238, 220, 0.12);
+    box-shadow: 0 0 30px rgba(200, 165, 100, 0.12), 0 0 70px rgba(200, 165, 100, 0.05);
     z-index: 10;
   }
   .wish-card-text {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     font-size: 15px; font-weight: 700; line-height: 1.4;
-    color: #3d3520;
+    color: #d4c8a8;
     word-break: break-word;
     white-space: nowrap;
+    text-shadow: 0 0 12px rgba(200, 165, 100, 0.15);
   }
   .wish-count {
     display: inline-block;
-    background: rgba(156,181,209,0.25); color: #9CB5D1;
+    background: rgba(156,181,209,0.15); color: #9CB5D1;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 9px; font-weight: 600;
     padding: 1px 6px; border-radius: 8px;
@@ -154,50 +170,44 @@
     50% { transform: translateY(var(--float-y, -8px)) rotate(var(--float-rotate, 0.5deg)); }
   }
   @keyframes wishAppear {
-    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   .wish-card.fly-up {
-    animation: flyUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: flyUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   @keyframes flyUp {
     0% { opacity: 0; transform: translateY(120px) scale(0.7) rotate(0deg); }
-    40% { opacity: 1; }
+    50% { opacity: 1; }
     100% { opacity: 1; }
   }
 
   /* INPUT */
   .wish-input-area {
     text-align: center;
-    padding-bottom: 100px;
+    padding-bottom: 120px;
     position: relative; z-index: 2;
-  }
-  .wish-input-label {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 12px; color: #4a5470;
-    margin-bottom: 16px;
-    letter-spacing: 0.08em;
   }
   .wish-input-wrap {
     position: relative;
-    max-width: 360px;
+    max-width: 340px;
     margin: 0 auto;
   }
   .wish-input {
     width: 100%; border: none;
-    border-bottom: 1px solid rgba(156, 181, 209, 0.2);
+    border-bottom: 1px solid rgba(180, 160, 120, 0.12);
     background: transparent; padding: 12px 0; font-size: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    color: #c8d5e2;
+    color: #c5bfb4;
     outline: none; transition: border-color 0.3s;
     text-align: center;
   }
   .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #3e4660; font-size: 14px; }
+  .wish-input::placeholder { color: #4a4640; font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 4px;
-    background: transparent; border: 1px solid rgba(156,181,209,0.25);
+    background: transparent; border: 1px solid rgba(156,181,209,0.2);
     border-radius: 20px; padding: 6px 20px; margin-top: 16px;
     font-size: 13px; color: #9CB5D1;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
@@ -205,8 +215,8 @@
     letter-spacing: 0.06em;
   }
   .wish-submit:hover {
-    background: rgba(156,181,209,0.08);
-    border-color: rgba(156,181,209,0.5);
+    background: rgba(156,181,209,0.06);
+    border-color: rgba(156,181,209,0.4);
     transform: translateY(-1px);
   }
   .wish-done {
@@ -230,16 +240,17 @@
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
     .page { padding: 0 20px; }
-    .wish-header { padding: 60px 0 32px; }
-    .wish-header-title { font-size: 24px; }
-    .wishes-sky { min-height: 350px; }
-    .wish-card { padding: 10px 16px 8px; }
+    .wish-header { padding: 60px 0 36px; }
+    .wish-header-title { font-size: 22px; }
+    .wishes-sky { min-height: 360px; }
+    .wish-card { padding: 12px 18px 10px; }
     .wish-card-text { font-size: 13px; }
   }
 </style>
 </head>
 <body>
 
+<div class="sky-layer"></div>
 <div class="stars" id="starsContainer"></div>
 
 <nav class="nav" id="mainNav">
@@ -258,7 +269,6 @@
 <div class="page">
 
   <div class="wish-header">
-    
     <div class="wish-header-title">往书屋里扔一个愿望</div>
     <div class="wish-header-sub">本书屋将不定期掉落许愿笔记</div>
   </div>
@@ -266,7 +276,6 @@
   <div class="wishes-sky" id="wishesSky"></div>
 
   <div class="wish-input-area">
-
     <div class="wish-input-wrap">
       <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书…" autocomplete="off" enterkeyhint="send">
     </div>
@@ -280,15 +289,19 @@
   // Stars
   (function() {
     var c = document.getElementById('starsContainer');
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 70; i++) {
       var s = document.createElement('div');
       s.className = 'star';
+      if (Math.random() < 0.2) s.classList.add('warm');
+      if (Math.random() < 0.1) s.classList.add('bright');
       s.style.left = Math.random() * 100 + '%';
       s.style.top = Math.random() * 100 + '%';
-      s.style.width = (1 + Math.random() * 2) + 'px';
-      s.style.height = s.style.width;
-      s.style.setProperty('--dur', (3 + Math.random() * 5) + 's');
-      s.style.setProperty('--delay', (Math.random() * 5) + 's');
+      var size = 1 + Math.random() * 1.5;
+      if (Math.random() < 0.08) size = 2.5 + Math.random() * 1;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.setProperty('--dur', (3 + Math.random() * 6) + 's');
+      s.style.setProperty('--delay', (Math.random() * 6) + 's');
       c.appendChild(s);
     }
   })();
@@ -311,7 +324,7 @@
     var sky = document.getElementById('wishesSky');
     sky.innerHTML = '';
     var sw = sky.offsetWidth;
-    var sh = sky.offsetHeight || 420;
+    var sh = sky.offsetHeight || 440;
 
     curatedWishes.forEach(function(wish, i) {
       var card = document.createElement('div');
@@ -325,9 +338,9 @@
       var cols = 4, rows = Math.ceil(curatedWishes.length / cols);
       var col = i % cols, row = Math.floor(i / cols);
       var cellW = sw / cols, cellH = sh / rows;
-      var left = cellW * col + 10 + Math.random() * (cellW - 90);
+      var left = cellW * col + 10 + Math.random() * (cellW - 100);
       var top = cellH * row + 10 + Math.random() * (cellH - 50);
-      left = Math.max(0, Math.min(left, sw - 120));
+      left = Math.max(0, Math.min(left, sw - 130));
       top = Math.max(0, Math.min(top, sh - 50));
 
       card.style.left = left + 'px';
@@ -335,11 +348,11 @@
 
       var br = ((i % 5) - 2) * 1.5;
       card.style.setProperty('--base-rotate', br + 'deg');
-      card.style.setProperty('--float-y', -(6 + Math.random() * 8) + 'px');
+      card.style.setProperty('--float-y', -(5 + Math.random() * 8) + 'px');
       card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 2) + 'deg');
-      card.style.setProperty('--float-dur', (5 + Math.random() * 4) + 's');
+      card.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
       card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
-      card.style.setProperty('--appear-delay', (i * 0.08) + 's');
+      card.style.setProperty('--appear-delay', (i * 0.1) + 's');
 
       sky.appendChild(card);
     });
@@ -360,7 +373,7 @@
     card.className = 'wish-card fly-up';
     card.addEventListener('animationend', function() {
       this.classList.remove('fly-up');
-      this.style.animation = 'wishFloat ' + (5 + Math.random() * 4) + 's ease-in-out infinite';
+      this.style.animation = 'wishFloat ' + (5 + Math.random() * 5) + 's ease-in-out infinite';
     });
     var displayText = text;
     if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
