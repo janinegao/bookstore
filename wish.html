@@ -13,8 +13,9 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #ffffff; color: #242424;
+    background: #1a1f2e; color: #e8e4df;
     line-height: 1.6; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; overflow-x: hidden;
   }
 
   @font-face {
@@ -25,16 +26,16 @@
     font-display: swap;
   }
 
-  /* NAV */
+  /* NAV - dark variant */
   .nav {
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(255,255,255,0.9);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: rgba(26, 31, 46, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.3); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -42,150 +43,161 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #242424;
+    font-size: 20px; font-weight: 600; color: #e8e4df;
     white-space: nowrap; cursor: pointer;
   }
   .nav-brand-text-short { display: none; }
   .nav-links { display: flex; gap: 28px; flex-shrink: 0; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: #8a92a6; font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
   .nav-links a:hover { color: #9CB5D1; }
   .nav-links a.active { color: #9CB5D1; }
 
+  /* STARS */
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: rgba(200, 210, 230, 0.4);
+    animation: twinkle var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.7; }
+  }
+
   /* PAGE */
   .page {
-    max-width: 780px;
+    position: relative; z-index: 1;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 32px;
   }
 
   /* HEADER */
   .wish-header {
-    padding: 96px 0 52px;
+    padding: 80px 0 40px;
     text-align: center;
-  }
-  .wish-header-icon {
-    font-size: 28px;
-    margin-bottom: 20px;
-    display: inline-block;
-    animation: gentleFloat 4s ease-in-out infinite;
-  }
-  @keyframes gentleFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    33% { transform: translateY(-6px) rotate(2deg); }
-    66% { transform: translateY(-3px) rotate(-1deg); }
   }
   .wish-header-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700;
-    color: #242424;
-    letter-spacing: 0.04em;
-    margin-bottom: 10px;
+    color: #e8e4df;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
   }
   .wish-header-sub {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; color: #9CB5D1;
-    letter-spacing: 0.06em;
+    font-size: 13px; color: #5a6480;
+    letter-spacing: 0.08em;
   }
 
-  /* WISHES DISPLAY */
-  .wishes-display {
-    display: flex; flex-wrap: wrap; gap: 16px;
-    justify-content: center;
-    margin-bottom: 48px;
-    padding: 0 4px;
-  }
-  .wish-card {
+  /* WISHES SKY */
+  .wishes-sky {
     position: relative;
-    background: #fff;
-    border: 1px solid rgba(156,181,209,0.12);
-    padding: 12px 20px 10px;
+    min-height: 420px;
+    margin-bottom: 48px;
+    padding: 20px 0;
+  }
+
+  /* WISH CARD - floating glowing paper */
+  .wish-card {
+    position: absolute;
+    background: rgba(245, 240, 228, 0.93);
     border-radius: 2px;
-    transform: rotate(var(--wish-rotate, -1.5deg));
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 14px 22px 12px;
     cursor: default;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 16px rgba(255, 220, 150, 0.1), 0 0 40px rgba(255, 220, 150, 0.05);
+    transition: box-shadow 0.4s ease;
+    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
+    animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
   }
   .wish-card::before {
     content: '';
     position: absolute;
-    top: -5px; left: 14px;
-    width: 32px; height: 10px;
-    background: rgba(156, 181, 209, 0.2);
-    transform: rotate(-2deg);
+    top: -5px; left: 16px;
+    width: 28px; height: 9px;
+    background: rgba(156, 181, 209, 0.22);
+    transform: rotate(-1.5deg);
     border-radius: 1px;
   }
   .wish-card:hover {
-    transform: rotate(0deg) translateY(-8px);
-    box-shadow: 0 12px 32px rgba(156,181,209,0.12), 0 2px 6px rgba(0,0,0,0.04);
-    border-color: rgba(156,181,209,0.25);
+    box-shadow: 0 8px 32px rgba(255, 220, 150, 0.22), 0 0 60px rgba(255, 220, 150, 0.08);
+    z-index: 10;
   }
   .wish-card-text {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
-    font-size: 16px; font-weight: 700; line-height: 1.4;
-    color: #5a6a7d;
+    font-size: 15px; font-weight: 700; line-height: 1.4;
+    color: #3d3520;
     word-break: break-word;
+    white-space: nowrap;
   }
   .wish-count {
     display: inline-block;
-    background: rgba(156,181,209,0.15); color: #7a9ab5;
+    background: rgba(156,181,209,0.2); color: #5a7a9a;
     font-family: 'Source Sans 3', sans-serif;
-    font-size: 10px; font-weight: 600;
-    padding: 1px 7px; border-radius: 8px;
-    margin-left: 6px; vertical-align: middle;
+    font-size: 9px; font-weight: 600;
+    padding: 1px 6px; border-radius: 8px;
+    margin-left: 5px; vertical-align: middle;
   }
 
-  /* SPARKLES - tiny floating dots */
-  .sparkle {
-    position: fixed;
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: rgba(156,181,209,0.3);
-    pointer-events: none;
-    animation: sparkleFloat var(--dur) ease-in-out infinite;
-    opacity: 0;
-    z-index: 0;
+  @keyframes wishFloat {
+    0%, 100% { transform: translateY(0) rotate(var(--base-rotate, -1deg)); }
+    50% { transform: translateY(var(--float-y, -8px)) rotate(var(--float-rotate, 0.5deg)); }
   }
-  @keyframes sparkleFloat {
-    0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
-    30% { opacity: 0.6; }
-    70% { opacity: 0.4; }
-    50% { transform: translateY(-40px) scale(1); }
+  @keyframes wishAppear {
+    from { opacity: 0; transform: translateY(30px) scale(0.9); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* INPUT AREA */
+  .wish-card.fly-up {
+    animation: flyUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes flyUp {
+    0% { opacity: 0; transform: translateY(120px) scale(0.7) rotate(0deg); }
+    40% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  /* INPUT */
   .wish-input-area {
     text-align: center;
     padding-bottom: 100px;
+    position: relative; z-index: 2;
   }
   .wish-input-label {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 13px; color: #9CB5D1;
+    font-size: 12px; color: #4a5470;
     margin-bottom: 16px;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
   .wish-input-wrap {
     position: relative;
-    max-width: 400px;
+    max-width: 360px;
     margin: 0 auto;
   }
   .wish-input {
     width: 100%; border: none;
-    border-bottom: 1px solid rgba(156, 181, 209, 0.25);
+    border-bottom: 1px solid rgba(156, 181, 209, 0.2);
     background: transparent; padding: 12px 0; font-size: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    color: #242424;
+    color: #e8e4df;
     outline: none; transition: border-color 0.3s;
     text-align: center;
   }
   .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #c0c8d2; font-size: 14px; }
+  .wish-input::placeholder { color: #3e4660; font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 4px;
-    background: transparent; border: 1px solid rgba(156,181,209,0.3);
+    background: transparent; border: 1px solid rgba(156,181,209,0.25);
     border-radius: 20px; padding: 6px 20px; margin-top: 16px;
     font-size: 13px; color: #9CB5D1;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
@@ -198,7 +210,7 @@
     transform: translateY(-1px);
   }
   .wish-done {
-    display: none; font-size: 15px; color: #9CB5D1;
+    display: none; font-size: 14px; color: #9CB5D1;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     animation: wishFly 0.6s ease;
   }
@@ -209,10 +221,6 @@
     60% { opacity: 1; transform: translateY(-6px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 
   @media (max-width: 600px) {
     .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 2px; }
@@ -222,15 +230,17 @@
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
     .page { padding: 0 20px; }
-    .wish-header { padding: 64px 0 36px; }
+    .wish-header { padding: 60px 0 32px; }
     .wish-header-title { font-size: 24px; }
-    .wishes-display { gap: 12px; }
+    .wishes-sky { min-height: 350px; }
     .wish-card { padding: 10px 16px 8px; }
-    .wish-card-text { font-size: 14px; }
+    .wish-card-text { font-size: 13px; }
   }
 </style>
 </head>
 <body>
+
+<div class="stars" id="starsContainer"></div>
 
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
@@ -248,17 +258,16 @@
 <div class="page">
 
   <div class="wish-header">
-    <div class="wish-header-icon">🪄</div>
     <div class="wish-header-title">许愿墙</div>
-    <div class="wish-header-sub">在书屋里许一个愿，它会被听见</div>
+    <div class="wish-header-sub">往书屋里扔一个愿望</div>
   </div>
 
-  <div class="wishes-display" id="wishesDisplay"></div>
+  <div class="wishes-sky" id="wishesSky"></div>
 
   <div class="wish-input-area">
     <div class="wish-input-label">写下你想看的书</div>
     <div class="wish-input-wrap">
-      <input class="wish-input" type="text" id="wishInput" placeholder="书屋将不定期掉落最新笔记…" autocomplete="off" enterkeyhint="send">
+      <input class="wish-input" type="text" id="wishInput" placeholder="愿望会飞向夜空…" autocomplete="off" enterkeyhint="send">
     </div>
     <button class="wish-submit" type="button" onclick="submitWish()">许个愿 →</button>
     <div class="wish-done" id="wishDone">愿望已飞出 🪄</div>
@@ -267,23 +276,22 @@
 </div>
 
 <script>
-  // Subtle floating sparkles
+  // Stars
   (function() {
-    var count = 12;
-    for (var i = 0; i < count; i++) {
-      var el = document.createElement('div');
-      el.className = 'sparkle';
-      el.style.left = (10 + Math.random() * 80) + '%';
-      el.style.top = (20 + Math.random() * 70) + '%';
-      el.style.setProperty('--dur', (6 + Math.random() * 8) + 's');
-      el.style.animationDelay = (Math.random() * 8) + 's';
-      el.style.width = (2 + Math.random() * 3) + 'px';
-      el.style.height = el.style.width;
-      document.body.appendChild(el);
+    var c = document.getElementById('starsContainer');
+    for (var i = 0; i < 50; i++) {
+      var s = document.createElement('div');
+      s.className = 'star';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.width = (1 + Math.random() * 2) + 'px';
+      s.style.height = s.style.width;
+      s.style.setProperty('--dur', (3 + Math.random() * 5) + 's');
+      s.style.setProperty('--delay', (Math.random() * 5) + 's');
+      c.appendChild(s);
     }
   })();
 
-  // Curated wishes
   var curatedWishes = [
     { text: '活着', count: 1 },
     { text: '悉达多', count: 3 },
@@ -299,21 +307,40 @@
   ];
 
   function renderWishes() {
-    var display = document.getElementById('wishesDisplay');
-    display.innerHTML = '';
+    var sky = document.getElementById('wishesSky');
+    sky.innerHTML = '';
+    var sw = sky.offsetWidth;
+    var sh = sky.offsetHeight || 420;
+
     curatedWishes.forEach(function(wish, i) {
       var card = document.createElement('div');
       card.className = 'wish-card';
-      var rotate = ((i % 5) - 2) * 1.2;
-      card.style.setProperty('--wish-rotate', rotate + 'deg');
-      card.style.animation = 'fadeInUp 0.4s ease ' + (i * 0.06) + 's both';
-      var countHTML = wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '';
+
       var displayText = wish.text;
-      if (displayText && !displayText.match(/^[《]/)) {
-        displayText = '《' + displayText + '》';
-      }
+      if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
+      var countHTML = wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '';
       card.innerHTML = '<div class="wish-card-text">' + displayText + countHTML + '</div>';
-      display.appendChild(card);
+
+      var cols = 4, rows = Math.ceil(curatedWishes.length / cols);
+      var col = i % cols, row = Math.floor(i / cols);
+      var cellW = sw / cols, cellH = sh / rows;
+      var left = cellW * col + 10 + Math.random() * (cellW - 90);
+      var top = cellH * row + 10 + Math.random() * (cellH - 50);
+      left = Math.max(0, Math.min(left, sw - 120));
+      top = Math.max(0, Math.min(top, sh - 50));
+
+      card.style.left = left + 'px';
+      card.style.top = top + 'px';
+
+      var br = ((i % 5) - 2) * 1.5;
+      card.style.setProperty('--base-rotate', br + 'deg');
+      card.style.setProperty('--float-y', -(6 + Math.random() * 8) + 'px');
+      card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 2) + 'deg');
+      card.style.setProperty('--float-dur', (5 + Math.random() * 4) + 's');
+      card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
+      card.style.setProperty('--appear-delay', (i * 0.08) + 's');
+
+      sky.appendChild(card);
     });
   }
 
@@ -324,31 +351,40 @@
     fetch('https://formsubmit.co/ajax/26881ae89b19d5a1668b37568bccb62c', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        wish: text,
-        _subject: '有求必应书屋 · 新许愿',
-        _captcha: 'false',
-        _template: 'table'
-      })
+      body: JSON.stringify({ wish: text, _subject: '有求必应书屋 · 新许愿', _captcha: 'false', _template: 'table' })
     });
+
+    var sky = document.getElementById('wishesSky');
+    var card = document.createElement('div');
+    card.className = 'wish-card fly-up';
+    var displayText = text;
+    if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
+    card.innerHTML = '<div class="wish-card-text">' + displayText + '</div>';
+    card.style.left = (sky.offsetWidth / 2 - 40 + Math.random() * 40) + 'px';
+    card.style.top = (sky.offsetHeight - 60) + 'px';
+    card.style.setProperty('--base-rotate', ((Math.random() - 0.5) * 3) + 'deg');
+    sky.appendChild(card);
+
     input.value = '';
     document.getElementById('wishDone').classList.add('visible');
-    setTimeout(function() {
-      document.getElementById('wishDone').classList.remove('visible');
-    }, 3000);
+    setTimeout(function() { document.getElementById('wishDone').classList.remove('visible'); }, 3000);
   }
 
   document.getElementById('wishInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') { e.preventDefault(); submitWish(); }
   });
 
-  // Nav scroll shadow
   window.addEventListener('scroll', function() {
     var nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
   });
 
   renderWishes();
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderWishes, 200);
+  });
 </script>
 
 </body>
