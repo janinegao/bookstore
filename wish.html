@@ -13,8 +13,8 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #111018;
-    color: #c5bfb4;
+    background: #ffffff;
+    color: #242424;
     line-height: 1.6; -webkit-font-smoothing: antialiased;
     min-height: 100vh; overflow-x: hidden;
   }
@@ -27,16 +27,16 @@
     font-display: block;
   }
 
-  /* NAV */
+  /* NAV - same as main site */
   .nav {
     position: sticky; top: 0; z-index: 100;
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    background: rgba(17, 16, 24, 0.85);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    background: rgba(255,255,255,0.9);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,0.4); }
+  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -44,47 +44,18 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #b8b0a4;
+    font-size: 20px; font-weight: 600; color: #242424;
     white-space: nowrap; cursor: pointer;
   }
   .nav-brand-text-short { display: none; }
   .nav-links { display: flex; gap: 28px; flex-shrink: 0; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #6b665e; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
   .nav-links a:hover { color: #9CB5D1; }
   .nav-links a.active { color: #9CB5D1; }
-
-  /* SKY - layered depth */
-  .sky-layer {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(40, 30, 55, 0.4) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(30, 25, 50, 0.3) 0%, transparent 60%),
-      linear-gradient(175deg, #0e0c16 0%, #151320 30%, #181528 60%, #111018 100%);
-  }
-
-  /* STARS */
-  .stars {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
-  }
-  .star {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(225, 218, 200, 0.5);
-    animation: twinkle var(--dur) ease-in-out infinite;
-    animation-delay: var(--delay);
-  }
-  .star.warm { background: rgba(240, 210, 160, 0.6); }
-  .star.bright { box-shadow: 0 0 4px rgba(225, 218, 200, 0.3); }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.8; }
-  }
 
   /* PAGE */
   .page {
@@ -96,69 +67,66 @@
 
   /* HEADER */
   .wish-header {
-    padding: 80px 0 48px;
+    padding: 72px 0 16px;
     text-align: center;
   }
   .wish-header-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 26px; font-weight: 700;
-    color: #c5bfb4;
-    letter-spacing: 0.08em;
+    color: #242424;
+    letter-spacing: 0.06em;
     margin-bottom: 10px;
   }
   .wish-header-sub {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 12px; color: #605b54;
-    letter-spacing: 0.12em;
+    font-size: 13px; color: #999;
+    letter-spacing: 0.08em;
   }
 
-  /* WISHES SKY */
+  /* WISHES SKY - light airy version */
   .wishes-sky {
     position: relative;
-    min-height: 440px;
-    margin-bottom: 48px;
+    min-height: 420px;
+    margin: 32px 0 48px;
     padding: 20px 0;
   }
 
-  /* WISH CARD - translucent with warm candlelight */
+  /* WISH CARD - light paper note with tape */
   .wish-card {
     position: absolute;
-    background: rgba(245, 238, 220, 0.07);
-    border: 1px solid rgba(220, 195, 150, 0.1);
+    background: rgba(248, 244, 232, 0.92);
     border-radius: 2px;
-    padding: 16px 24px 14px;
+    padding: 14px 22px 12px;
     cursor: default;
-    backdrop-filter: blur(2px);
-    box-shadow: 0 0 20px rgba(200, 165, 100, 0.06), 0 0 50px rgba(200, 165, 100, 0.03);
-    transition: box-shadow 0.5s ease, background 0.5s ease;
-    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 1s ease both;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
     animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
   }
   .wish-card::before {
     content: '';
     position: absolute;
-    top: -5px; left: 18px;
-    width: 26px; height: 9px;
-    background: rgba(200, 175, 130, 0.15);
+    top: -5px; left: 16px;
+    width: 28px; height: 9px;
+    background: rgba(156, 181, 209, 0.35);
     transform: rotate(-1.5deg);
     border-radius: 1px;
   }
   .wish-card:hover {
-    background: rgba(245, 238, 220, 0.12);
-    box-shadow: 0 0 30px rgba(200, 165, 100, 0.12), 0 0 70px rgba(200, 165, 100, 0.05);
+    box-shadow: 0 6px 20px rgba(156, 181, 209, 0.12), 0 2px 6px rgba(0,0,0,0.04);
+    transform: translateY(-2px);
     z-index: 10;
   }
   .wish-card-text {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     font-size: 15px; font-weight: 700; line-height: 1.4;
-    color: #d4c8a8;
+    color: #3d3520;
     word-break: break-word;
     white-space: nowrap;
-    text-shadow: 0 0 12px rgba(200, 165, 100, 0.15);
   }
   .wish-count {
     display: inline-block;
-    background: rgba(156,181,209,0.15); color: #9CB5D1;
+    background: rgba(156,181,209,0.2); color: #6b7b8d;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 9px; font-weight: 600;
     padding: 1px 6px; border-radius: 8px;
@@ -167,7 +135,7 @@
 
   @keyframes wishFloat {
     0%, 100% { transform: translateY(0) rotate(var(--base-rotate, -1deg)); }
-    50% { transform: translateY(var(--float-y, -8px)) rotate(var(--float-rotate, 0.5deg)); }
+    50% { transform: translateY(var(--float-y, -6px)) rotate(var(--float-rotate, 0.5deg)); }
   }
   @keyframes wishAppear {
     from { opacity: 0; transform: translateY(20px) scale(0.95); }
@@ -175,39 +143,59 @@
   }
 
   .wish-card.fly-up {
-    animation: flyUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: flyUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   @keyframes flyUp {
-    0% { opacity: 0; transform: translateY(120px) scale(0.7) rotate(0deg); }
-    50% { opacity: 1; }
+    0% { opacity: 0; transform: translateY(80px) scale(0.7) rotate(0deg); }
+    40% { opacity: 1; }
     100% { opacity: 1; }
+  }
+
+  /* LIGHT PARTICLES - subtle floating dots */
+  .particles {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(156, 181, 209, 0.15);
+    animation: particleDrift var(--drift-dur, 20s) linear infinite;
+    animation-delay: var(--drift-delay, 0s);
+  }
+  @keyframes particleDrift {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-100vh) translateX(var(--drift-x, 30px)); opacity: 0; }
   }
 
   /* INPUT */
   .wish-input-area {
     text-align: center;
-    padding-bottom: 120px;
+    padding-bottom: 100px;
     position: relative; z-index: 2;
   }
   .wish-input-wrap {
     position: relative;
-    max-width: 340px;
+    max-width: 360px;
     margin: 0 auto;
   }
   .wish-input {
     width: 100%; border: none;
-    border-bottom: 1px solid rgba(180, 160, 120, 0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
     background: transparent; padding: 12px 0; font-size: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    color: #c5bfb4;
+    color: #242424;
     outline: none; transition: border-color 0.3s;
     text-align: center;
   }
   .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #4a4640; font-size: 14px; }
+  .wish-input::placeholder { color: #bbb; font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 4px;
-    background: transparent; border: 1px solid rgba(156,181,209,0.2);
+    background: transparent; border: 1px solid rgba(156,181,209,0.3);
     border-radius: 20px; padding: 6px 20px; margin-top: 16px;
     font-size: 13px; color: #9CB5D1;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
@@ -215,8 +203,8 @@
     letter-spacing: 0.06em;
   }
   .wish-submit:hover {
-    background: rgba(156,181,209,0.06);
-    border-color: rgba(156,181,209,0.4);
+    background: rgba(156,181,209,0.08);
+    border-color: #9CB5D1;
     transform: translateY(-1px);
   }
   .wish-done {
@@ -240,18 +228,17 @@
     .nav-brand-text-full { display: none; }
     .nav-brand-text-short { display: inline; }
     .page { padding: 0 20px; }
-    .wish-header { padding: 60px 0 36px; }
+    .wish-header { padding: 56px 0 12px; }
     .wish-header-title { font-size: 22px; }
-    .wishes-sky { min-height: 360px; }
-    .wish-card { padding: 12px 18px 10px; }
+    .wishes-sky { min-height: 350px; }
+    .wish-card { padding: 10px 16px 8px; }
     .wish-card-text { font-size: 13px; }
   }
 </style>
 </head>
 <body>
 
-<div class="sky-layer"></div>
-<div class="stars" id="starsContainer"></div>
+<div class="particles" id="particlesContainer"></div>
 
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
@@ -286,23 +273,21 @@
 </div>
 
 <script>
-  // Stars
+  // Light particles - subtle floating dots
   (function() {
-    var c = document.getElementById('starsContainer');
-    for (var i = 0; i < 70; i++) {
-      var s = document.createElement('div');
-      s.className = 'star';
-      if (Math.random() < 0.2) s.classList.add('warm');
-      if (Math.random() < 0.1) s.classList.add('bright');
-      s.style.left = Math.random() * 100 + '%';
-      s.style.top = Math.random() * 100 + '%';
-      var size = 1 + Math.random() * 1.5;
-      if (Math.random() < 0.08) size = 2.5 + Math.random() * 1;
-      s.style.width = size + 'px';
-      s.style.height = size + 'px';
-      s.style.setProperty('--dur', (3 + Math.random() * 6) + 's');
-      s.style.setProperty('--delay', (Math.random() * 6) + 's');
-      c.appendChild(s);
+    var c = document.getElementById('particlesContainer');
+    for (var i = 0; i < 15; i++) {
+      var p = document.createElement('div');
+      p.className = 'particle';
+      var size = 3 + Math.random() * 4;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.bottom = -(Math.random() * 20) + '%';
+      p.style.setProperty('--drift-dur', (15 + Math.random() * 20) + 's');
+      p.style.setProperty('--drift-delay', (Math.random() * 15) + 's');
+      p.style.setProperty('--drift-x', ((Math.random() - 0.5) * 80) + 'px');
+      c.appendChild(p);
     }
   })();
 
@@ -324,7 +309,7 @@
     var sky = document.getElementById('wishesSky');
     sky.innerHTML = '';
     var sw = sky.offsetWidth;
-    var sh = sky.offsetHeight || 440;
+    var sh = sky.offsetHeight || 420;
 
     curatedWishes.forEach(function(wish, i) {
       var card = document.createElement('div');
@@ -348,11 +333,11 @@
 
       var br = ((i % 5) - 2) * 1.5;
       card.style.setProperty('--base-rotate', br + 'deg');
-      card.style.setProperty('--float-y', -(5 + Math.random() * 8) + 'px');
+      card.style.setProperty('--float-y', -(4 + Math.random() * 6) + 'px');
       card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 2) + 'deg');
       card.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
       card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
-      card.style.setProperty('--appear-delay', (i * 0.1) + 's');
+      card.style.setProperty('--appear-delay', (i * 0.08) + 's');
 
       sky.appendChild(card);
     });
