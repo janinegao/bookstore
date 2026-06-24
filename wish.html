@@ -269,7 +269,8 @@
     <div class="wish-header-sub">本书屋将不定期掉落许愿笔记</div>
   </div>
 
-  <div class="wishes-wall" id="wishesWall">
+  <div class="wishes-wall">
+    <div class="wishes-list" id="wishesList"></div>
     <div class="wish-input-area">
       <div class="wish-input-wrap">
         <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书…" autocomplete="off" enterkeyhint="send">
@@ -337,7 +338,7 @@
   }
 
   function renderWishes() {
-    var wall = document.getElementById('wishesWall');
+    var wall = document.getElementById('wishesList');
     wall.innerHTML = '';
     var wishes = getAllWishes();
 
@@ -384,7 +385,7 @@
     saveLocalWishes(local);
 
     // Fly-up animation
-    var wall = document.getElementById('wishesWall');
+    var wall = document.getElementById('wishesList');
     var card = document.createElement('div');
     card.className = 'wish-card fly-up';
     card.addEventListener('animationend', function() {
@@ -400,7 +401,7 @@
     var displayText = text;
     if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
     card.innerHTML = '<div class="wish-card-text">' + displayText + '</div>';
-    wall.appendChild(card);
+    list.appendChild(card);
 
     input.value = '';
     document.getElementById('wishDone').classList.add('visible');
