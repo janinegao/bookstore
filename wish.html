@@ -258,14 +258,13 @@
 <div class="page">
 
   <div class="wish-header">
-    <div class="wish-header-title">许愿墙</div>
-    <div class="wish-header-sub">往书屋里扔一个愿望</div>
+    <div class="wish-header-title">往书屋里扔一个愿望</div>
   </div>
 
   <div class="wishes-sky" id="wishesSky"></div>
 
   <div class="wish-input-area">
-    <div class="wish-input-label">写下你想看的书</div>
+
     <div class="wish-input-wrap">
       <input class="wish-input" type="text" id="wishInput" placeholder="愿望会飞向夜空…" autocomplete="off" enterkeyhint="send">
     </div>
@@ -357,6 +356,10 @@
     var sky = document.getElementById('wishesSky');
     var card = document.createElement('div');
     card.className = 'wish-card fly-up';
+    card.addEventListener('animationend', function() {
+      this.classList.remove('fly-up');
+      this.style.animation = 'wishFloat ' + (5 + Math.random() * 4) + 's ease-in-out infinite';
+    });
     var displayText = text;
     if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
     card.innerHTML = '<div class="wish-card-text">' + displayText + '</div>';
