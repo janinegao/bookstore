@@ -27,7 +27,7 @@
     font-display: block;
   }
 
-  /* NAV - same as main site */
+  /* NAV */
   .nav {
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
@@ -83,25 +83,29 @@
     letter-spacing: 0.08em;
   }
 
-  /* WISHES SKY - light airy version */
-  .wishes-sky {
+  /* WISHES WALL - clustered layout */
+  .wishes-wall {
     position: relative;
-    min-height: 420px;
-    margin: 32px 0 48px;
-    padding: 20px 0;
+    min-height: 480px;
+    margin: 24px auto 48px;
+    padding: 24px;
+    max-width: 720px;
   }
 
-  /* WISH CARD - light paper note with tape */
+  /* WISH CARD */
   .wish-card {
-    position: absolute;
+    display: inline-block;
     background: rgba(248, 244, 232, 0.92);
     border-radius: 2px;
     padding: 14px 22px 12px;
+    margin: 6px 8px;
     cursor: default;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
     transition: box-shadow 0.4s ease, transform 0.3s ease;
-    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.8s ease both;
+    animation: wishFloat var(--float-dur, 6s) ease-in-out infinite, wishAppear 0.6s ease both;
     animation-delay: var(--float-delay, 0s), var(--appear-delay, 0s);
+    position: relative;
+    vertical-align: top;
   }
   .wish-card::before {
     content: '';
@@ -114,7 +118,7 @@
   }
   .wish-card:hover {
     box-shadow: 0 6px 20px rgba(156, 181, 209, 0.12), 0 2px 6px rgba(0,0,0,0.04);
-    transform: translateY(-2px);
+    transform: translateY(-3px) rotate(0deg);
     z-index: 10;
   }
   .wish-card-text {
@@ -135,23 +139,23 @@
 
   @keyframes wishFloat {
     0%, 100% { transform: translateY(0) rotate(var(--base-rotate, -1deg)); }
-    50% { transform: translateY(var(--float-y, -6px)) rotate(var(--float-rotate, 0.5deg)); }
+    50% { transform: translateY(var(--float-y, -5px)) rotate(var(--float-rotate, 0.5deg)); }
   }
   @keyframes wishAppear {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   .wish-card.fly-up {
-    animation: flyUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: flyUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   @keyframes flyUp {
-    0% { opacity: 0; transform: translateY(80px) scale(0.7) rotate(0deg); }
+    0% { opacity: 0; transform: translateY(60px) scale(0.7); }
     40% { opacity: 1; }
-    100% { opacity: 1; }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* LIGHT PARTICLES - subtle floating dots */
+  /* LIGHT PARTICLES */
   .particles {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0;
@@ -160,14 +164,14 @@
   .particle {
     position: absolute;
     border-radius: 50%;
-    background: rgba(156, 181, 209, 0.15);
+    background: rgba(156, 181, 209, 0.12);
     animation: particleDrift var(--drift-dur, 20s) linear infinite;
     animation-delay: var(--drift-delay, 0s);
   }
   @keyframes particleDrift {
     0% { transform: translateY(0) translateX(0); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
     100% { transform: translateY(-100vh) translateX(var(--drift-x, 30px)); opacity: 0; }
   }
 
@@ -230,8 +234,8 @@
     .page { padding: 0 20px; }
     .wish-header { padding: 56px 0 12px; }
     .wish-header-title { font-size: 22px; }
-    .wishes-sky { min-height: 350px; }
-    .wish-card { padding: 10px 16px 8px; }
+    .wishes-wall { padding: 16px; min-height: 380px; }
+    .wish-card { padding: 10px 16px 8px; margin: 5px 6px; }
     .wish-card-text { font-size: 13px; }
   }
 </style>
@@ -260,7 +264,7 @@
     <div class="wish-header-sub">本书屋将不定期掉落许愿笔记</div>
   </div>
 
-  <div class="wishes-sky" id="wishesSky"></div>
+  <div class="wishes-wall" id="wishesWall"></div>
 
   <div class="wish-input-area">
     <div class="wish-input-wrap">
@@ -273,10 +277,10 @@
 </div>
 
 <script>
-  // Light particles - subtle floating dots
+  // Light particles
   (function() {
     var c = document.getElementById('particlesContainer');
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 12; i++) {
       var p = document.createElement('div');
       p.className = 'particle';
       var size = 3 + Math.random() * 4;
@@ -284,13 +288,14 @@
       p.style.height = size + 'px';
       p.style.left = Math.random() * 100 + '%';
       p.style.bottom = -(Math.random() * 20) + '%';
-      p.style.setProperty('--drift-dur', (15 + Math.random() * 20) + 's');
+      p.style.setProperty('--drift-dur', (18 + Math.random() * 22) + 's');
       p.style.setProperty('--drift-delay', (Math.random() * 15) + 's');
       p.style.setProperty('--drift-x', ((Math.random() - 0.5) * 80) + 'px');
       c.appendChild(p);
     }
   })();
 
+  // Merge curated + localStorage wishes
   var curatedWishes = [
     { text: '活着', count: 1 },
     { text: '悉达多', count: 3 },
@@ -305,13 +310,33 @@
     { text: '三体', count: 1 }
   ];
 
-  function renderWishes() {
-    var sky = document.getElementById('wishesSky');
-    sky.innerHTML = '';
-    var sw = sky.offsetWidth;
-    var sh = sky.offsetHeight || 420;
+  function getLocalWishes() {
+    try { return JSON.parse(localStorage.getItem('bookstoreWishes') || '[]'); }
+    catch(e) { return []; }
+  }
+  function saveLocalWishes(wishes) {
+    try { localStorage.setItem('bookstoreWishes', JSON.stringify(wishes)); } catch(e) {}
+  }
 
-    curatedWishes.forEach(function(wish, i) {
+  function getAllWishes() {
+    var local = getLocalWishes();
+    var all = curatedWishes.slice();
+    local.forEach(function(w) {
+      var found = false;
+      for (var i = 0; i < all.length; i++) {
+        if (all[i].text === w.text) { all[i].count += w.count; found = true; break; }
+      }
+      if (!found) all.push({ text: w.text, count: w.count });
+    });
+    return all;
+  }
+
+  function renderWishes() {
+    var wall = document.getElementById('wishesWall');
+    wall.innerHTML = '';
+    var wishes = getAllWishes();
+
+    wishes.forEach(function(wish, i) {
       var card = document.createElement('div');
       card.className = 'wish-card';
 
@@ -320,26 +345,15 @@
       var countHTML = wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '';
       card.innerHTML = '<div class="wish-card-text">' + displayText + countHTML + '</div>';
 
-      var cols = 4, rows = Math.ceil(curatedWishes.length / cols);
-      var col = i % cols, row = Math.floor(i / cols);
-      var cellW = sw / cols, cellH = sh / rows;
-      var left = cellW * col + 10 + Math.random() * (cellW - 100);
-      var top = cellH * row + 10 + Math.random() * (cellH - 50);
-      left = Math.max(0, Math.min(left, sw - 130));
-      top = Math.max(0, Math.min(top, sh - 50));
-
-      card.style.left = left + 'px';
-      card.style.top = top + 'px';
-
-      var br = ((i % 5) - 2) * 1.5;
+      var br = ((i % 5) - 2) * 1.2;
       card.style.setProperty('--base-rotate', br + 'deg');
-      card.style.setProperty('--float-y', -(4 + Math.random() * 6) + 'px');
-      card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 2) + 'deg');
+      card.style.setProperty('--float-y', -(3 + Math.random() * 5) + 'px');
+      card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 1.5) + 'deg');
       card.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
       card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
-      card.style.setProperty('--appear-delay', (i * 0.08) + 's');
+      card.style.setProperty('--appear-delay', (i * 0.06) + 's');
 
-      sky.appendChild(card);
+      wall.appendChild(card);
     });
   }
 
@@ -347,26 +361,41 @@
     var input = document.getElementById('wishInput');
     var text = input.value.trim();
     if (!text) return;
+
+    // Send to FormSubmit
     fetch('https://formsubmit.co/ajax/26881ae89b19d5a1668b37568bccb62c', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ wish: text, _subject: '有求必应书屋 · 新许愿', _captcha: 'false', _template: 'table' })
     });
 
-    var sky = document.getElementById('wishesSky');
+    // Save locally
+    var local = getLocalWishes();
+    var found = false;
+    for (var i = 0; i < local.length; i++) {
+      if (local[i].text === text) { local[i].count++; found = true; break; }
+    }
+    if (!found) local.push({ text: text, count: 1 });
+    saveLocalWishes(local);
+
+    // Fly-up animation
+    var wall = document.getElementById('wishesWall');
     var card = document.createElement('div');
     card.className = 'wish-card fly-up';
     card.addEventListener('animationend', function() {
       this.classList.remove('fly-up');
+      var br = ((Math.random() - 0.5) * 3);
+      this.style.setProperty('--base-rotate', br + 'deg');
+      this.style.setProperty('--float-y', -(3 + Math.random() * 5) + 'px');
+      this.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 1.5) + 'deg');
+      this.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
+      this.style.setProperty('--float-delay', '0s');
       this.style.animation = 'wishFloat ' + (5 + Math.random() * 5) + 's ease-in-out infinite';
     });
     var displayText = text;
     if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
     card.innerHTML = '<div class="wish-card-text">' + displayText + '</div>';
-    card.style.left = (sky.offsetWidth / 2 - 40 + Math.random() * 40) + 'px';
-    card.style.top = (sky.offsetHeight - 60) + 'px';
-    card.style.setProperty('--base-rotate', ((Math.random() - 0.5) * 3) + 'deg');
-    sky.appendChild(card);
+    wall.appendChild(card);
 
     input.value = '';
     document.getElementById('wishDone').classList.add('visible');
