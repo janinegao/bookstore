@@ -387,6 +387,7 @@
     color: #242424;
   }
   .detail-note em { font-style: italic; }
+  .detail-note mark { background: rgba(255,235,59,0.3); padding: 1px 2px; border-radius: 2px; }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
@@ -721,6 +722,7 @@
     if (!note) return '';
     let html = note.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     html = html.replace(/「([^」]+)」/g, '<em>「$1」</em>');
+    html = html.replace(/==([^=]+)==/g, '<mark>$1</mark>');
     const paragraphs = html.split(/\n{2,}/).filter(p => p.trim());
     if (!paragraphs.length) return '';
     return paragraphs.map((p, i) => {
