@@ -353,17 +353,6 @@
     margin: 0 auto;
     padding: 60px 32px;
   }
-  .detail-back {
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px;
-    color: #9CB5D1;
-    margin-bottom: 32px;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .detail-back:hover { opacity: 0.7; }
   .detail-text {
     max-width: 680px;
   }
@@ -428,7 +417,7 @@
 
   <nav class="nav" id="mainNav">
     <div class="nav-inner">
-      <div class="nav-brand">
+      <div class="nav-brand" style="cursor:pointer;" onclick="window.scrollTo({top:0,behavior:'smooth'});">
         🪄 <span class="nav-brand-text-full">BookRoom of Requirement</span><span class="nav-brand-text-short">BookRoom</span>
       </div>
       <div class="nav-links">
@@ -481,9 +470,9 @@
 <div id="detailPage" style="display:none">
   <nav class="nav">
     <div class="nav-inner">
-      <div class="nav-brand">
+      <a class="nav-brand" href="#" onclick="goHome(); return false;" style="text-decoration:none;color:inherit;">
         🪄 <span class="nav-brand-text-full">BookRoom of Requirement</span><span class="nav-brand-text-short">BookRoom</span>
-      </div>
+      </a>
       <div class="nav-links">
         <a href="https://www.xiaoyuzhoufm.com/podcast/6255a9fffca6e23c68be96df" target="_blank" rel="noopener">PODCAST</a>
         <a href="about.html">About</a>
@@ -491,7 +480,6 @@
     </div>
   </nav>
   <div class="detail-content">
-    <a class="detail-back" id="detailBack" href="#">← 返回书屋</a>
     <div class="detail-text">
       <h1 class="detail-title" id="detailTitle"></h1>
       <div class="detail-lead" id="detailLead"></div>
@@ -776,6 +764,8 @@
       showMainPage();
     }
   }
+
+  function goHome() { window.location.hash = ''; showMainPage(); }
 
   window.addEventListener('hashchange', handleHash);
   handleHash();
