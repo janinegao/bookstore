@@ -99,6 +99,17 @@
     box-shadow: inset 0 0 60px rgba(156,181,209,0.06);
   }
 
+  .wish-section {
+    margin-bottom: 28px;
+  }
+  .wish-section-label {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    color: #8a9bae;
+    letter-spacing: 0.1em;
+    margin-bottom: 14px;
+    padding-left: 4px;
+  }
   /* WISH CARD */
   .wish-card {
     display: inline-block;
@@ -138,15 +149,6 @@
     color: #3d3520;
     word-break: break-word;
     white-space: nowrap;
-  }
-  .wish-fulfilled {
-    display: inline-block;
-    color: #6b8aaa;
-    font-size: 16px;
-    font-weight: 700;
-    margin-left: 5px;
-    vertical-align: middle;
-    font-family: sans-serif;
   }
   .wish-count {
     display: inline-block;
@@ -281,7 +283,14 @@
 <div class="wish-header"><div class="wish-header-title">有求必应书屋</div></div>
 
   <div class="wishes-wall">
-    <div class="wishes-list" id="wishesList"></div>
+    <div class="wish-section">
+      <div class="wish-section-label">许愿笔记</div>
+      <div class="wishes-list" id="wishesFulfilled"></div>
+    </div>
+    <div class="wish-section">
+      <div class="wish-section-label">许愿</div>
+      <div class="wishes-list" id="wishesPending"></div>
+    </div>
     <div class="wish-input-area">
       <div class="wish-input-wrap">
         <input class="wish-input" type="text" id="wishInput" placeholder="写下你想看的书...书屋将不定期掉落许愿笔记🪄" autocomplete="off" enterkeyhint="send">
@@ -348,30 +357,41 @@
     return all;
   }
 
+  function createWishCard(wish, i) {
+    var card = document.createElement('div');
+    card.className = 'wish-card';
+
+    var displayText = wish.text;
+    if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
+    var countHTML = wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '';
+    card.innerHTML = '<div class="wish-card-text">' + displayText + countHTML + '</div>';
+
+    var br = ((i % 5) - 2) * 1.2;
+    card.style.setProperty('--base-rotate', br + 'deg');
+    card.style.setProperty('--float-y', -(3 + Math.random() * 5) + 'px');
+    card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 1.5) + 'deg');
+    card.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
+    card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
+    card.style.setProperty('--appear-delay', (i * 0.06) + 's');
+    card.style.setProperty('--tape-rotate', ((Math.random() - 0.5) * 8) + 'deg');
+
+    return card;
+  }
+
   function renderWishes() {
-    var wall = document.getElementById('wishesList');
-    wall.innerHTML = '';
+    var fulfilledWall = document.getElementById('wishesFulfilled');
+    var pendingWall = document.getElementById('wishesPending');
+    fulfilledWall.innerHTML = '';
+    pendingWall.innerHTML = '';
     var wishes = getAllWishes();
 
-    wishes.forEach(function(wish, i) {
-      var card = document.createElement('div');
-      card.className = 'wish-card';
-
-      var displayText = wish.text;
-      if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
-      var countHTML = (wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '') + (wish.fulfilled ? '<span class="wish-fulfilled">✓</span>' : '');
-      card.innerHTML = '<div class="wish-card-text">' + displayText + countHTML + '</div>';
-
-      var br = ((i % 5) - 2) * 1.2;
-      card.style.setProperty('--base-rotate', br + 'deg');
-      card.style.setProperty('--float-y', -(3 + Math.random() * 5) + 'px');
-      card.style.setProperty('--float-rotate', ((Math.random() - 0.5) * 1.5) + 'deg');
-      card.style.setProperty('--float-dur', (5 + Math.random() * 5) + 's');
-      card.style.setProperty('--float-delay', (Math.random() * 3) + 's');
-      card.style.setProperty('--appear-delay', (i * 0.06) + 's');
-      card.style.setProperty('--tape-rotate', ((Math.random() - 0.5) * 8) + 'deg');
-
-      wall.appendChild(card);
+    var fi = 0, pi = 0;
+    wishes.forEach(function(wish) {
+      if (wish.fulfilled) {
+        fulfilledWall.appendChild(createWishCard(wish, fi++));
+      } else {
+        pendingWall.appendChild(createWishCard(wish, pi++));
+      }
     });
   }
 
@@ -397,7 +417,7 @@
     saveLocalWishes(local);
 
     // Fly-up animation
-    var wall = document.getElementById('wishesList');
+    var wall = document.getElementById('wishesPending');
     var card = document.createElement('div');
     card.className = 'wish-card fly-up';
     card.addEventListener('animationend', function() {
