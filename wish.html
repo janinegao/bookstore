@@ -139,6 +139,14 @@
     word-break: break-word;
     white-space: nowrap;
   }
+  .wish-fulfilled {
+    display: inline-block;
+    color: #9CB5D1;
+    font-size: 13px;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-family: sans-serif;
+  }
   .wish-count {
     display: inline-block;
     background: rgba(156,181,209,0.2); color: #6b7b8d;
@@ -306,7 +314,7 @@
   // Merge curated + localStorage wishes
   var curatedWishes = [
     { text: '活着', count: 1 },
-    { text: '悉达多', count: 3 },
+    { text: '悉达多', count: 3, fulfilled: true },
     { text: '红与黑', count: 1 },
     { text: '第一性原理', count: 1 },
     { text: '鼠疫', count: 1 },
@@ -350,7 +358,7 @@
 
       var displayText = wish.text;
       if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
-      var countHTML = wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '';
+      var countHTML = (wish.count > 1 ? '<span class="wish-count">+' + wish.count + '</span>' : '') + (wish.fulfilled ? '<span class="wish-fulfilled">✓</span>' : '');
       card.innerHTML = '<div class="wish-card-text">' + displayText + countHTML + '</div>';
 
       var br = ((i % 5) - 2) * 1.2;
@@ -436,3 +444,4 @@
 
 </body>
 </html>
+
