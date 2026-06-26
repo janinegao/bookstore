@@ -433,7 +433,7 @@
     var displayText = text;
     if (displayText && !displayText.match(/^[《]/)) displayText = '《' + displayText + '》';
     card.innerHTML = '<div class="wish-card-text">' + displayText + '</div>';
-    list.appendChild(card);
+    wall.appendChild(card);
 
     input.value = '';
     document.getElementById('wishDone').classList.add('visible');
@@ -445,11 +445,6 @@
   });
 
   
-  window.addEventListener('scroll', function() {
-    var nav = document.getElementById('mainNav');
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
-  });
-
   window.addEventListener('scroll', function() {
     var nav = document.getElementById('mainNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
