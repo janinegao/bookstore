@@ -115,10 +115,11 @@
   }
   .featured-card:hover { box-shadow: 0 8px 32px rgba(156,181,209,0.18); }
   .featured-cover {
-    width: 200px; min-width: 200px; border-radius: 6px;
+    width: 200px; min-width: 200px; aspect-ratio: 2/3; border-radius: 6px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.12); overflow: hidden;
+    background: #f0f0f0;
   }
-  .featured-cover img { width: 100%; display: block; }
+  .featured-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .featured-info { flex: 1; padding-top: 8px; }
   .featured-title {
     font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 600;
@@ -644,7 +645,7 @@
   if (featuredBook && featuredBook.note) {
     featuredSection.style.display = 'block';
     const coverHTML = featuredBook.cover
-      ? `<img src="${featuredBook.cover}" alt="${featuredBook.title}">`
+      ? `<img src="${featuredBook.cover}" alt="${featuredBook.title}" loading="eager">`
       : '';
     document.getElementById('featuredCover').innerHTML = coverHTML;
     document.getElementById('featuredTitle').textContent = '《' + featuredBook.title + '》';
