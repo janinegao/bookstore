@@ -101,52 +101,59 @@
 
   /* FEATURED BOOK */
   .featured-section {
-    max-width: 1200px; margin: 0 auto; padding: 0 32px 48px;
+    max-width: 1200px; margin: 0 auto; padding: 64px 32px 72px;
   }
+  .featured-inner {
+    display: flex; align-items: center; gap: 80px;
+    cursor: pointer;
+  }
+  .featured-left { flex: 1; min-width: 0; }
   .featured-label {
-    font-family: 'Noto Sans SC', sans-serif; font-size: 12px; font-weight: 400;
-    color: #9CB5D1; letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 20px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 11px; font-weight: 400;
+    color: #9CB5D1; letter-spacing: 3px; text-transform: uppercase;
+    margin: 0 0 24px;
   }
-  .featured-card {
-    display: flex; align-items: flex-start; gap: 48px;
-    padding: 40px; background: #fafbfc; border-radius: 8px;
-    cursor: pointer; transition: box-shadow 0.3s ease;
-  }
-  .featured-card:hover { box-shadow: 0 8px 32px rgba(156,181,209,0.18); }
-  .featured-cover {
-    width: 200px; min-width: 200px; aspect-ratio: 2/3; border-radius: 6px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12); overflow: hidden;
-    background: #f0f0f0;
-  }
-  .featured-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .featured-info { flex: 1; padding-top: 8px; }
   .featured-title {
-    font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 600;
-    color: #333; margin: 0 0 8px;
+    font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 600;
+    color: #2c2c2c; margin: 0 0 10px; line-height: 1.3;
   }
   .featured-author {
-    font-family: 'Noto Sans SC', sans-serif; font-size: 13px; color: #888;
-    margin: 0 0 20px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 13px; color: #999;
+    margin: 0 0 32px; letter-spacing: 0.5px;
   }
   .featured-quote {
-    font-family: 'Source Serif 4', serif; font-size: 15px; color: #555;
-    line-height: 1.8; margin: 0 0 28px;
-    padding-left: 16px; border-left: 2px solid #9CB5D1;
+    font-family: 'Source Serif 4', serif; font-size: 17px; color: #4a4a4a;
+    line-height: 1.9; margin: 0 0 36px;
+    padding-left: 20px; border-left: 2px solid #9CB5D1;
+    font-style: italic;
   }
-  .featured-btn {
-    display: inline-block; padding: 10px 28px;
-    background: #9CB5D1; color: #fff; border: none; border-radius: 4px;
-    font-family: 'Noto Sans SC', sans-serif; font-size: 14px; font-weight: 400;
-    cursor: pointer; transition: background 0.2s ease; letter-spacing: 0.5px;
+  .featured-link {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 13px; color: #9CB5D1;
+    text-decoration: none; letter-spacing: 1px;
+    transition: color 0.2s ease, gap 0.2s ease;
+    display: inline-flex; align-items: center; gap: 6px;
   }
-  .featured-btn:hover { background: #8aa4bf; }
+  .featured-link:hover { color: #7a9ab8; gap: 10px; }
+  .featured-arrow { transition: transform 0.2s ease; }
+  .featured-link:hover .featured-arrow { transform: translateX(3px); }
+  .featured-cover {
+    width: 180px; min-width: 180px; aspect-ratio: 2/3; border-radius: 4px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden; background: #f0f0f0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .featured-inner:hover .featured-cover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .featured-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   @media (max-width: 768px) {
-    .featured-card { flex-direction: column; gap: 24px; padding: 24px; }
-    .featured-cover { width: 140px; min-width: 140px; }
-    .featured-title { font-size: 18px; }
-    .featured-quote { font-size: 14px; }
+    .featured-section { padding: 40px 20px 48px; }
+    .featured-inner { flex-direction: column-reverse; gap: 32px; align-items: flex-start; }
+    .featured-cover { width: 120px; min-width: 120px; }
+    .featured-title { font-size: 22px; }
+    .featured-quote { font-size: 15px; }
   }
 
 
@@ -392,15 +399,15 @@
   </section>
 
   <div class="featured-section" id="featuredSection" style="display:none">
-    <div class="featured-label">最新笔记</div>
-    <div class="featured-card" id="featuredCard">
-      <div class="featured-cover" id="featuredCover"></div>
-      <div class="featured-info">
+    <div class="featured-inner" id="featuredCard">
+      <div class="featured-left">
+        <div class="featured-label">最新笔记</div>
         <h2 class="featured-title" id="featuredTitle"></h2>
         <p class="featured-author" id="featuredAuthor"></p>
-        <p class="featured-quote" id="featuredQuote"></p>
-        <button class="featured-btn">阅读笔记</button>
+        <blockquote class="featured-quote" id="featuredQuote"></blockquote>
+        <a class="featured-link" id="featuredLink">阅读笔记 <span class="featured-arrow">→</span></a>
       </div>
+      <div class="featured-cover" id="featuredCover"></div>
     </div>
   </div>
 
@@ -651,7 +658,8 @@
     document.getElementById('featuredTitle').textContent = '《' + featuredBook.title + '》';
     document.getElementById('featuredAuthor').textContent = featuredBook.author;
     document.getElementById('featuredQuote').textContent = featuredBook.quote || '';
-    document.getElementById('featuredCard').addEventListener('click', () => {
+    document.getElementById('featuredLink').addEventListener('click', (e) => {
+      e.preventDefault();
       window.location.hash = 'book/' + featuredBook.id;
     });
   }
