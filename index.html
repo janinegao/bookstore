@@ -99,6 +99,56 @@
     margin-top: 8px;
   }
 
+  /* FEATURED BOOK */
+  .featured-section {
+    max-width: 1200px; margin: 0 auto; padding: 0 32px 48px;
+  }
+  .featured-label {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 12px; font-weight: 400;
+    color: #9CB5D1; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .featured-card {
+    display: flex; align-items: flex-start; gap: 48px;
+    padding: 40px; background: #fafbfc; border-radius: 8px;
+    cursor: pointer; transition: box-shadow 0.3s ease;
+  }
+  .featured-card:hover { box-shadow: 0 8px 32px rgba(156,181,209,0.18); }
+  .featured-cover {
+    width: 200px; min-width: 200px; border-radius: 6px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12); overflow: hidden;
+  }
+  .featured-cover img { width: 100%; display: block; }
+  .featured-info { flex: 1; padding-top: 8px; }
+  .featured-title {
+    font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 600;
+    color: #333; margin: 0 0 8px;
+  }
+  .featured-author {
+    font-family: 'Noto Sans SC', sans-serif; font-size: 13px; color: #888;
+    margin: 0 0 20px;
+  }
+  .featured-quote {
+    font-family: 'Source Serif 4', serif; font-size: 15px; color: #555;
+    line-height: 1.8; margin: 0 0 28px;
+    padding-left: 16px; border-left: 2px solid #9CB5D1;
+  }
+  .featured-btn {
+    display: inline-block; padding: 10px 28px;
+    background: #9CB5D1; color: #fff; border: none; border-radius: 4px;
+    font-family: 'Noto Sans SC', sans-serif; font-size: 14px; font-weight: 400;
+    cursor: pointer; transition: background 0.2s ease; letter-spacing: 0.5px;
+  }
+  .featured-btn:hover { background: #8aa4bf; }
+
+  @media (max-width: 768px) {
+    .featured-card { flex-direction: column; gap: 24px; padding: 24px; }
+    .featured-cover { width: 140px; min-width: 140px; }
+    .featured-title { font-size: 18px; }
+    .featured-quote { font-size: 14px; }
+  }
+
+
   /* BOOKS GRID */
   .books-section { max-width: 1200px; margin: 0 auto; padding: 0 32px 120px; }
   .books-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px 24px; }
@@ -340,6 +390,19 @@
 
   </section>
 
+  <div class="featured-section" id="featuredSection" style="display:none">
+    <div class="featured-label">最新笔记</div>
+    <div class="featured-card" id="featuredCard">
+      <div class="featured-cover" id="featuredCover"></div>
+      <div class="featured-info">
+        <h2 class="featured-title" id="featuredTitle"></h2>
+        <p class="featured-author" id="featuredAuthor"></p>
+        <p class="featured-quote" id="featuredQuote"></p>
+        <button class="featured-btn">阅读笔记</button>
+      </div>
+    </div>
+  </div>
+
   <div class="books-section">
     <div class="section-divider"></div>
     
@@ -574,6 +637,23 @@
     "quote": "真的不迷信天赋了…就做一个文学勤杂工",
     "note": "这是一本未完成的书，陀思妥耶夫斯基被流放到西伯利亚之后中断了这本书的创作。而王小波却说，他终生记住了这本书的前半部。\n\n我可能会记住这本书的第一个章节《童年》。在涅朵奇卡的童年生活中，出现了一个最奇怪、最不可思议的人，对她的一生产生了不可磨灭的影响。这个人是她的继父——叶菲莫夫。\n\n这个人实在太妙了。如果有一个展叫做文学经典人物长廊，我想叶菲莫夫一定位列其中。他的一生，闪现过那么一瞬间的天才的光芒，作为小提琴手。但很快，这一瞬间的光芒，就消磨在他自己疯狂而杂乱无章的想象中了。\n\n文中是这样描述的：\"他杂乱无章的想象中，一刻不停地创造着最为庞大的未来计划。他不仅想成为一流的天才，成为世界上最出色的小提琴家之一；他不仅已经认为自己是这样的天才——他，还想成为一位作曲家。尽管他全然不了解对位法。\"\n\n简单总结就是，==想法过多，但努力不了一点。==\n\n他的音乐家朋友却恰恰相反，觉得自己\"没有多少天分\"，将成为真正意义上的\"艺术的勤杂工\"——这让他在刻苦的练习中，技艺精进了一百倍。\n\n叶菲莫夫则变得越来越疯狂，紧紧抓住最初的那一点光芒不肯撒手，用\"我是天才\"麻痹自己。他还开始向外人吹嘘自己、讽刺同行，甚至将自己的失意归咎于贫穷，归咎于以一己之力撑起整个家的妻子，大言不惭地说是\"妻子毁了他\"。\n\n直到有一天，一位真正的小提琴家来到彼得堡，以一声天才般的琴音彻底击碎了叶菲莫夫的幻梦。\"==没有才华==\"这四个字重重落在了他生命的尾音，他的人生也随之走向死亡。\n\n不知道你是否怀疑过自己的平凡，用\"没有天分\"自我否定过？天才还是艺术的勤杂工，你怎么选？\n\n读完这本书，你可能会找到答案。"   }
 ];
+
+  // Featured book (first in array = newest)
+  const featuredBook = booksData[0];
+  const featuredSection = document.getElementById('featuredSection');
+  if (featuredBook && featuredBook.note) {
+    featuredSection.style.display = 'block';
+    const coverHTML = featuredBook.cover
+      ? `<img src="${featuredBook.cover}" alt="${featuredBook.title}">`
+      : '';
+    document.getElementById('featuredCover').innerHTML = coverHTML;
+    document.getElementById('featuredTitle').textContent = '《' + featuredBook.title + '》';
+    document.getElementById('featuredAuthor').textContent = featuredBook.author;
+    document.getElementById('featuredQuote').textContent = featuredBook.quote || '';
+    document.getElementById('featuredCard').addEventListener('click', () => {
+      window.location.hash = 'book/' + featuredBook.id;
+    });
+  }
 
   const grid = document.getElementById('booksGrid');
   booksData.forEach((book, i) => {
