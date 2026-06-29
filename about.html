@@ -83,6 +83,19 @@
     font-style: normal; color: #9CB5D1;
   }
 
+  .intro-list {
+    list-style: none; padding: 0; margin: 0 0 16px;
+  }
+  .intro-list li {
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
+    font-size: 15px; line-height: 2; color: #555;
+    padding-left: 16px; position: relative; margin-bottom: 8px;
+  }
+  .intro-list li::before {
+    content: '·'; position: absolute; left: 0; color: #9CB5D1; font-weight: 700;
+  }
+  .intro-list li:last-child { margin-bottom: 0; }
+
   /* ===== 更新日志 ===== */
   .log-area {
     padding: 48px 0 80px;
@@ -156,7 +169,12 @@
     <div class="intro-body">
       <p>我的经历：在36氪工作4年+，在字节跳动工作5年+。梦想是当独立书屋店主。</p>
       <p>理想中的独立书店，每本书都由店主亲自挑选，每本书的封面都有店主手写的推荐语。所以在有求必应书屋中，我在每本书的封面上加了贴纸，字体是手写体。</p>
-      <p>独立书店是一种生活方式的公开表达。我的阅读偏好：<br>· 50%的时间在读严肃文学，50%的时间在读网文。严肃文学和网文本没有界限之分，一个冷知识，豆瓣 TOP 250 榜单里，有一本是网文（《她对此感到厌烦》）<br>· 我最喜欢的作家是杜布拉夫卡·乌格雷西奇，我读完了她在中国出版的五本书《狐狸》《疼痛部》《芭芭雅嘎下了个蛋》《多谢不阅》《无条件投降博物馆》，目前心目中的文字天花板<br>· 沉淀内容的形式除了笔记，还有播客，在小宇宙书读完了页面有完整书单，三位主播的精读阅读量均超过100+</p>
+      <p>独立书店是一种生活方式的公开表达。我的阅读偏好：</p>
+      <ul class="intro-list">
+        <li>50%的时间在读严肃文学，50%的时间在读网文。严肃文学和网文本没有界限之分，一个冷知识，豆瓣 TOP 250 榜单里，有一本是网文（《她对此感到厌烦》）</li>
+        <li>我最喜欢的作家是杜布拉夫卡·乌格雷西奇，我读完了她在中国出版的五本书《狐狸》《疼痛部》《芭芭雅嘎下了个蛋》《多谢不阅》《无条件投降博物馆》，目前心目中的文字天花板</li>
+        <li>沉淀内容的形式除了笔记，还有播客，在小宇宙书读完了页面有完整书单，三位主播的精读阅读量均超过100+</li>
+      </ul>
     </div>
   </div>
 
