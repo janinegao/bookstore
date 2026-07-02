@@ -64,7 +64,7 @@
     --card-shadow-hover: rgba(0,0,0,0.55);
     --no-cover-bg-from: #2a2a2a;
     --no-cover-bg-to: #222;
-    --highlight-bg: rgba(255,235,59,0.12);
+    --highlight-bg: transparent;
     --detail-bg: #1f1f1f;
     --detail-border: rgba(255,255,255,0.08);
   }
@@ -347,6 +347,7 @@
   }
   .detail-note em { font-style: italic; }
   .detail-note mark { background: var(--highlight-bg); padding: 1px 2px; border-radius: 2px; }
+  [data-theme="dark"] .detail-note mark { color: #fff; font-style: italic; }
 
   /* RESPONSIVE */
 
