@@ -223,7 +223,7 @@
       <a href="index.html">首页</a>
       <a href="wish.html">许愿墙</a>
       <a href="about.html">关于我</a>
-      <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">深</button>
+      <button class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌙</button>
     </div>
   </div>
 </nav>
@@ -284,7 +284,7 @@
   }
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    const icon = theme === 'dark' ? '浅' : '深';
+    const icon = theme === 'dark' ? '☀️' : '🌙';
     document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = icon);
     localStorage.setItem('bookstore-theme', theme);
   }
