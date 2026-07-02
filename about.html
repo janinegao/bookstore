@@ -275,3 +275,24 @@
 
 </div>
 
+  <script>
+  // Theme toggle
+  function getTheme() {
+    const saved = localStorage.getItem('bookstore-theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = theme === 'dark' ? '☀️' : '🌙';
+    document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = icon);
+    localStorage.setItem('bookstore-theme', theme);
+  }
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+  applyTheme(getTheme());
+  </script>
+</body>
+</html>
