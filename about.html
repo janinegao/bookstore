@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,11 +8,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About · 有求必应书屋</title>
 <style>
+
+  /* ===== Theme Variables ===== */
+  :root, [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-nav: rgba(255,255,255,0.9);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.06);
+    --text-primary: #242424;
+    --text-secondary: #6b6b6b;
+    --text-tertiary: #999;
+    --accent: #9CB5D1;
+    --accent-hover: #8aa4c0;
+    --accent-light: #A8C8E0;
+    --border-subtle: rgba(0,0,0,0.06);
+    --sticker-bg: rgba(242, 235, 213, 0.92);
+    --sticker-text: #3d3520;
+    --sticker-ribbon: rgba(156, 181, 209, 0.45);
+    --wish-input-border: rgba(156, 181, 209, 0.35);
+    --placeholder: #bbb;
+    --card-shadow: rgba(0,0,0,0.12);
+    --card-shadow-hover: rgba(0,0,0,0.18);
+    --no-cover-bg-from: #f0f0f0;
+    --no-cover-bg-to: #e0e0e0;
+    --highlight-bg: rgba(255,235,59,0.2);
+    --detail-bg: #ffffff;
+    --detail-border: rgba(0,0,0,0.06);
+    --accent-dot: #9CB5D1;
+    --log-date-color: var(--accent);
+  }
+  [data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-nav: rgba(26,26,46,0.92);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.3);
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0b0;
+    --text-tertiary: #787890;
+    --accent: #9CB5D1;
+    --accent-hover: #b0c8e0;
+    --accent-light: #7a9ab8;
+    --border-subtle: rgba(255,255,255,0.08);
+    --sticker-bg: rgba(60,55,40,0.9);
+    --sticker-text: #d4c9a8;
+    --sticker-ribbon: rgba(100,130,160,0.5);
+    --wish-input-border: rgba(156,181,209,0.25);
+    --placeholder: #555;
+    --card-shadow: rgba(0,0,0,0.35);
+    --card-shadow-hover: rgba(0,0,0,0.5);
+    --no-cover-bg-from: #2a2a3e;
+    --no-cover-bg-to: #1e1e30;
+    --highlight-bg: rgba(255,235,59,0.15);
+    --detail-bg: #1a1a2e;
+    --detail-border: rgba(255,255,255,0.08);
+    --accent-dot: #7a9ab8;
+    --log-date-color: #7a9ab8;
+  }
+
+
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #ffffff; color: #242424;
+    background: var(--bg-primary); color: var(--text-primary);
     line-height: 1.6; -webkit-font-smoothing: antialiased;
   }
 
@@ -21,11 +77,11 @@
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(255,255,255,0.9);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-subtle);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+  .nav.scrolled { box-shadow: 0 1px 12px var(--bg-nav-scrolled-shadow); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -33,11 +89,11 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #242424;
+    font-size: 20px; font-weight: 600; color: var(--text-primary);
     white-space: nowrap;
   }
   .nav-brand-icon {
-    width: 32px; height: 32px; background: #A8C8E0; border-radius: 50%;
+    width: 32px; height: 32px; background: var(--accent-light); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 700;
   }
@@ -45,10 +101,10 @@
   .nav-brand-text-short { display: none; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: var(--text-secondary); font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
-  .nav-links a:hover { color: #9CB5D1; }
+  .nav-links a:hover { color: var(--accent); }
 
   /* ===== 全局容器 ===== */
   .page {
@@ -65,7 +121,7 @@
   .intro-heading {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700;
-    color: #242424;
+    color: var(--text-primary);
     letter-spacing: 0.04em;
     margin-bottom: 32px;
   }
@@ -80,7 +136,7 @@
     margin-bottom: 0;
   }
   .intro-body em {
-    font-style: normal; color: #9CB5D1;
+    font-style: normal; color: var(--accent);
   }
 
   .intro-list {
@@ -92,7 +148,7 @@
     padding-left: 16px; position: relative; margin-bottom: 8px;
   }
   .intro-list li::before {
-    content: '·'; position: absolute; left: 0; color: #9CB5D1; font-weight: 700;
+    content: '·'; position: absolute; left: 0; color: var(--accent); font-weight: 700;
   }
   .intro-list li:last-child { margin-bottom: 0; }
 
@@ -103,13 +159,13 @@
   .log-heading {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700;
-    color: #242424;
+    color: var(--text-primary);
     letter-spacing: 0.04em;
     margin-bottom: 40px;
   }
   .log-entry-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; font-weight: 400; color: #9CB5D1; display: inline; vertical-align: baseline;
+    font-size: 14px; font-weight: 400; color: var(--accent); display: inline; vertical-align: baseline;
   }
   .log-entry {
     margin-bottom: 32px;
@@ -120,13 +176,13 @@
   .log-date {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 14px; font-weight: 400;
-    color: #9CB5D1;
+    color: var(--accent);
     letter-spacing: 0.04em;
     display: inline; margin-right: 10px; vertical-align: baseline;
   }
   .log-body {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; line-height: 1.8; color: #6b6b6b;
+    font-size: 14px; line-height: 1.8; color: var(--text-secondary);
   }
   .log-body p { margin-bottom: 8px; }
   .log-body p:last-child { margin-bottom: 0; }
@@ -137,6 +193,17 @@
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+
+  /* Theme Toggle */
+  .theme-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; padding: 4px 8px; border-radius: 6px;
+    transition: background 0.2s, opacity 0.2s;
+    opacity: 0.7; line-height: 1;
+  }
+  .theme-toggle:hover { opacity: 1; background: var(--border-subtle); }
+  body, .nav { transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
 
   @media (max-width: 600px) {
     .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 2px; }

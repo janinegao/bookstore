@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <link rel="dns-prefetch" href="//busuanzi.ibruce.info">
   <meta charset="UTF-8">
@@ -18,11 +18,63 @@
     font-style: normal;
     font-display: swap;
   }
+
+  /* ===== Theme Variables ===== */
+  :root, [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-nav: rgba(255,255,255,0.9);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.06);
+    --text-primary: #242424;
+    --text-secondary: #6b6b6b;
+    --text-tertiary: #999;
+    --accent: #9CB5D1;
+    --accent-hover: #8aa4c0;
+    --accent-light: #A8C8E0;
+    --border-subtle: rgba(0,0,0,0.06);
+    --sticker-bg: rgba(242, 235, 213, 0.92);
+    --sticker-text: #3d3520;
+    --sticker-ribbon: rgba(156, 181, 209, 0.45);
+    --wish-input-border: rgba(156, 181, 209, 0.35);
+    --placeholder: #bbb;
+    --card-shadow: rgba(0,0,0,0.12);
+    --card-shadow-hover: rgba(0,0,0,0.18);
+    --no-cover-bg-from: #f0f0f0;
+    --no-cover-bg-to: #e0e0e0;
+    --highlight-bg: rgba(255,235,59,0.2);
+    --detail-bg: #ffffff;
+    --detail-border: rgba(0,0,0,0.06);
+  }
+  [data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-nav: rgba(26,26,46,0.92);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.3);
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0b0;
+    --text-tertiary: #787890;
+    --accent: #9CB5D1;
+    --accent-hover: #b0c8e0;
+    --accent-light: #7a9ab8;
+    --border-subtle: rgba(255,255,255,0.08);
+    --sticker-bg: rgba(60,55,40,0.9);
+    --sticker-text: #d4c9a8;
+    --sticker-ribbon: rgba(100,130,160,0.5);
+    --wish-input-border: rgba(156,181,209,0.25);
+    --placeholder: #555;
+    --card-shadow: rgba(0,0,0,0.35);
+    --card-shadow-hover: rgba(0,0,0,0.5);
+    --no-cover-bg-from: #2a2a3e;
+    --no-cover-bg-to: #1e1e30;
+    --highlight-bg: rgba(255,235,59,0.15);
+    --detail-bg: #1a1a2e;
+    --detail-border: rgba(255,255,255,0.08);
+  }
+
+
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #ffffff; color: #242424;
+    background: var(--bg-primary); color: var(--text-primary);
     line-height: 1.6; -webkit-font-smoothing: antialiased;
   }
 
@@ -31,11 +83,11 @@
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(255,255,255,0.9);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-subtle);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+  .nav.scrolled { box-shadow: 0 1px 12px var(--bg-nav-scrolled-shadow); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -43,11 +95,11 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #242424;
+    font-size: 20px; font-weight: 600; color: var(--text-primary);
     white-space: nowrap;
   }
   .nav-brand-icon {
-    width: 32px; height: 32px; background: #A8C8E0; border-radius: 50%;
+    width: 32px; height: 32px; background: var(--accent-light); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 700;
   }
@@ -55,10 +107,10 @@
   .nav-brand-text-short { display: none; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: var(--text-secondary); font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
-  .nav-links a:hover { color: #9CB5D1; }
+  .nav-links a:hover { color: var(--accent); }
 
   /* HERO */
   
@@ -69,7 +121,7 @@
   .hero-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 42px; font-weight: 700; line-height: 1.15;
-    color: #242424; margin-bottom: 0; letter-spacing: 0.02em;
+    color: var(--text-primary); margin-bottom: 0; letter-spacing: 0.02em;
     display: inline-flex; flex-direction: column; align-items: stretch;
   }
   .hero-title-cn {
@@ -82,20 +134,20 @@
     font-family: 'Source Sans 3', sans-serif;
     font-size: 11px; font-weight: 300;
     letter-spacing: 0.3em;
-    color: #999; margin-top: 4px;
+    color: var(--text-tertiary); margin-top: 4px;
     text-align: center;
     text-transform: uppercase;
   }
   .hero-slogan {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 16px; font-weight: 400;
-    color: #6b6b6b; line-height: 1.8;
+    color: var(--text-secondary); line-height: 1.8;
     margin-top: 20px; letter-spacing: 0.04em;
   }
   .hero-progress {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 12px; font-weight: 500;
-    color: #9CB5D1; letter-spacing: 0.06em;
+    color: var(--accent); letter-spacing: 0.06em;
     margin-top: 8px;
   }
 
@@ -111,10 +163,10 @@
   .book-card:hover { transform: translateY(-6px); }
   .book-cover-wrap {
     position: relative; border-radius: 4px; overflow: visible;
-    margin-bottom: 20px; box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    margin-bottom: 20px; box-shadow: 0 6px 24px var(--card-shadow);
     transition: box-shadow 0.3s ease;
   }
-  .book-card:hover .book-cover-wrap { box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
+  .book-card:hover .book-cover-wrap { box-shadow: 0 10px 32px var(--card-shadow-hover); }
   .book-cover-wrap img {
     width: 100%; aspect-ratio: 2/3; object-fit: cover;
     border-radius: 4px; display: block;
@@ -156,7 +208,7 @@
     transition: transform 0.2s;
   }
   .sticker-note {
-    background: rgba(242, 235, 213, 0.92);
+    background: var(--sticker-bg);
     border-radius: 2px;
     box-shadow: 1px 2px 6px rgba(0,0,0,0.10);
     position: relative;
@@ -167,7 +219,7 @@
     position: absolute;
     top: -6px; left: 12px;
     width: 50px; height: 14px;
-    background: rgba(156, 181, 209, 0.45);
+    background: var(--sticker-ribbon);
     transform: rotate(-2deg);
     border-radius: 1px;
     z-index: 3;
@@ -175,7 +227,7 @@
   .sticker-note p {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     font-size: 16px; font-weight: 700; line-height: 1.35;
-    color: #3d3520;
+    color: var(--sticker-text);
     word-break: break-word;
   }
 
@@ -193,51 +245,51 @@
     gap: 12px;
     margin-bottom: 48px;
     padding-bottom: 16px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid var(--border-subtle);
   }
   .section-label-cn {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 14px; font-weight: 700;
-    color: #242424; letter-spacing: 0.06em;
+    color: var(--text-primary); letter-spacing: 0.06em;
   }
   .section-label-en {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 11px; font-weight: 500;
-    color: #6b6b6b; letter-spacing: 0.1em;
+    color: var(--text-secondary); letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
   /* FOOTER */
   .footer {
     text-align: center; padding: 40px 32px;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    font-size: 15px; color: #6b6b6b;
+    border-top: 1px solid var(--detail-border);
+    font-size: 15px; color: var(--text-secondary);
   }
   .footer-brand {
-    color: #9CB5D1; font-weight: 600;
+    color: var(--accent); font-weight: 600;
   }
   .wish-input {
     width: 100%; max-width: 440px; border: none;
-    border-bottom: 1px solid rgba(156, 181, 209, 0.35);
+    border-bottom: 1px solid var(--wish-input-border);
     background: transparent; padding: 10px 0; font-size: 15px;
-    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif; color: #242424;
+    font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif; color: var(--text-primary);
     outline: none; transition: border-color 0.3s;
     margin: 0 auto; display: block;
   }
-  .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #bbb; font-size: 14px; }
+  .wish-input:focus { border-color: var(--accent); }
+  .wish-input::placeholder { color: var(--placeholder); font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 3px;
-    background: #A8C8E0; border: none;
+    background: var(--accent-light); border: none;
     border-radius: 3px; padding: 4px 10px; margin-top: 10px;
     font-size: 12px; color: #fff;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     cursor: pointer; transition: all 0.3s ease;
     letter-spacing: 0.06em;
   }
-  .wish-submit:hover { background: #8aa4c0; }
+  .wish-submit:hover { background: var(--accent-hover); }
   .wish-done {
-    display: none; font-size: 15px; color: #9CB5D1;
+    display: none; font-size: 15px; color: var(--accent);
     font-family: sans-serif;
     animation: fadeInUp 0.5s ease;
   }
@@ -252,7 +304,7 @@
   /* DETAIL PAGE */
   .detail-page {
     min-height: 100vh;
-    background: #ffffff;
+    background: var(--detail-bg);
   }
   .detail-content {
     max-width: 1200px;
@@ -266,12 +318,12 @@
   .detail-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 28px; font-weight: 700; line-height: 1.3;
-    color: #242424; margin-bottom: 28px;
+    color: var(--text-primary); margin-bottom: 28px;
     letter-spacing: 0.02em;
   }
   .detail-author {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 14px; color: #6b6b6b;
+    font-size: 14px; color: var(--text-secondary);
     margin-bottom: 20px;
   }
   .detail-lead {
@@ -279,11 +331,11 @@
     font-size: 22px; font-weight: 700; line-height: 1.6;
     color: #242424; margin-bottom: 36px;
     padding-left: 16px;
-    border-left: 3px solid #9CB5D1;
+    border-left: 3px solid var(--accent);
   }
   .detail-note {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; line-height: 1.8; color: #242424; text-align: left;
+    font-size: 15px; line-height: 1.8; color: var(--text-primary); text-align: left;
   }
   .detail-note p { margin-bottom: 1.4em; text-indent: 0; }
   .detail-note p:first-child::first-letter {
@@ -294,9 +346,24 @@
     color: #242424;
   }
   .detail-note em { font-style: italic; }
-  .detail-note mark { background: rgba(255,235,59,0.2); padding: 1px 2px; border-radius: 2px; }
+  .detail-note mark { background: var(--highlight-bg); padding: 1px 2px; border-radius: 2px; }
 
   /* RESPONSIVE */
+
+  /* Theme Toggle */
+  .theme-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; padding: 4px 8px; border-radius: 6px;
+    transition: background 0.2s, opacity 0.2s;
+    opacity: 0.7; line-height: 1;
+  }
+  .theme-toggle:hover { opacity: 1; background: var(--border-subtle); }
+
+  /* Transition for theme change */
+  body, .nav, .book-card, .detail-content, .sticker, .sticker-ribbon {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
   @media (max-width: 900px) {
     .books-grid { grid-template-columns: repeat(4, 1fr); gap: 40px 24px; }
   }
@@ -367,6 +434,7 @@
         <a href="wish.html">许愿墙</a>
         <a href="about.html">关于我</a>
       </div>
+      <button id="themeToggleDetail" class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌙</button>
     </div>
   </nav>
   <div class="detail-content">
@@ -583,7 +651,7 @@
 
     const coverHTML = book.cover
       ? `<img src="${book.cover}" alt="${book.title}" loading="lazy">`
-      : `<div style="width:100%;aspect-ratio:2/3;background:linear-gradient(135deg,#f0f0f0,#e0e0e0);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-size:18px;color:#999;padding:16px;text-align:center;">${book.title}</div>`;
+      : `<div style="width:100%;aspect-ratio:2/3;background:linear-gradient(135deg,var(--no-cover-bg-from),var(--no-cover-bg-to));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-size:18px;color:var(--text-tertiary);padding:16px;text-align:center;">${book.title}</div>`;
 
     card.innerHTML = `
       <div class="book-cover-wrap">
@@ -703,7 +771,26 @@
 
 </script>
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  // Theme toggle
+  function getTheme() {
+    const saved = localStorage.getItem('bookstore-theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = theme === 'dark' ? '☀️' : '🌙';
+    document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = icon);
+    localStorage.setItem('bookstore-theme', theme);
+  }
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+  // Apply on load
+  applyTheme(getTheme());
+</script>
   
 </body>
 </html>

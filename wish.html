@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,12 +9,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>有求必应书屋·许愿墙</title>
 <style>
+
+  /* ===== Theme Variables ===== */
+  :root, [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-nav: rgba(255,255,255,0.9);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.06);
+    --text-primary: #242424;
+    --text-secondary: #6b6b6b;
+    --text-tertiary: #999;
+    --accent: #9CB5D1;
+    --accent-hover: #8aa4c0;
+    --accent-light: #A8C8E0;
+    --border-subtle: rgba(0,0,0,0.06);
+    --sticker-bg: rgba(242, 235, 213, 0.92);
+    --sticker-text: #3d3520;
+    --sticker-ribbon: rgba(156, 181, 209, 0.45);
+    --wish-input-border: rgba(156, 181, 209, 0.35);
+    --placeholder: #bbb;
+    --card-shadow: rgba(0,0,0,0.12);
+    --card-shadow-hover: rgba(0,0,0,0.18);
+    --no-cover-bg-from: #f0f0f0;
+    --no-cover-bg-to: #e0e0e0;
+    --highlight-bg: rgba(255,235,59,0.2);
+    --detail-bg: #ffffff;
+    --detail-border: rgba(0,0,0,0.06);
+    --accent-dot: #9CB5D1;
+    --log-date-color: var(--accent);
+  }
+  [data-theme="dark"] {
+    --bg-primary: #1a1a2e;
+    --bg-nav: rgba(26,26,46,0.92);
+    --bg-nav-scrolled-shadow: rgba(0,0,0,0.3);
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0b0;
+    --text-tertiary: #787890;
+    --accent: #9CB5D1;
+    --accent-hover: #b0c8e0;
+    --accent-light: #7a9ab8;
+    --border-subtle: rgba(255,255,255,0.08);
+    --sticker-bg: rgba(60,55,40,0.9);
+    --sticker-text: #d4c9a8;
+    --sticker-ribbon: rgba(100,130,160,0.5);
+    --wish-input-border: rgba(156,181,209,0.25);
+    --placeholder: #555;
+    --card-shadow: rgba(0,0,0,0.35);
+    --card-shadow-hover: rgba(0,0,0,0.5);
+    --no-cover-bg-from: #2a2a3e;
+    --no-cover-bg-to: #1e1e30;
+    --highlight-bg: rgba(255,235,59,0.15);
+    --detail-bg: #1a1a2e;
+    --detail-border: rgba(255,255,255,0.08);
+    --accent-dot: #7a9ab8;
+    --log-date-color: #7a9ab8;
+  }
+
+
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Source Sans 3', -apple-system, sans-serif;
-    background: #ffffff;
-    color: #242424;
+    background: var(--detail-bg);
+    color: var(--text-primary);
     line-height: 1.6; -webkit-font-smoothing: antialiased;
     min-height: 100vh; overflow-x: hidden;
   }
@@ -32,11 +88,11 @@
     position: sticky; top: 0; z-index: 100;
     backdrop-filter: blur(14px) saturate(180%);
     -webkit-backdrop-filter: blur(14px) saturate(180%);
-    background: rgba(255,255,255,0.9);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-subtle);
     transition: box-shadow 0.3s;
   }
-  .nav.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+  .nav.scrolled { box-shadow: 0 1px 12px var(--bg-nav-scrolled-shadow); }
   .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 14px 32px;
     display: flex; align-items: center; justify-content: space-between;
@@ -44,11 +100,11 @@
   .nav-brand {
     display: flex; align-items: center; gap: 8px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 20px; font-weight: 600; color: #242424;
+    font-size: 20px; font-weight: 600; color: var(--text-primary);
     white-space: nowrap;
   }
   .nav-brand-icon {
-    width: 32px; height: 32px; background: #A8C8E0; border-radius: 50%;
+    width: 32px; height: 32px; background: var(--accent-light); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-family: 'Source Serif 4', serif; font-size: 16px; font-weight: 700;
   }
@@ -56,10 +112,10 @@
   .nav-brand-text-short { display: none; }
   .nav-links a {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 15px; color: #6b6b6b; font-weight: 500; transition: color 0.2s;
+    font-size: 15px; color: var(--text-secondary); font-weight: 500; transition: color 0.2s;
     text-decoration: none;
   }
-  .nav-links a:hover { color: #9CB5D1; }
+  .nav-links a:hover { color: var(--accent); }
 
   /* PAGE *//* PAGE */
   .page {
@@ -77,13 +133,13 @@
   .wish-header-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 26px; font-weight: 700;
-    color: #242424;
+    color: var(--text-primary);
     letter-spacing: 0.06em;
     margin-bottom: 10px;
   }
   .wish-header-sub {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    font-size: 13px; color: #999;
+    font-size: 13px; color: var(--text-tertiary);
     letter-spacing: 0.08em;
   }
 
@@ -146,7 +202,7 @@
   .wish-card-text {
     font-family: 'ELEYANG Bonjour', cursive, sans-serif;
     font-size: 15px; font-weight: 700; line-height: 1.4;
-    color: #3d3520;
+    color: var(--sticker-text);
     word-break: break-word;
     white-space: nowrap;
   }
@@ -214,28 +270,28 @@
     border-bottom: 1px solid rgba(0,0,0,0.08);
     background: transparent; padding: 12px 0; font-size: 16px;
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
-    color: #242424;
+    color: var(--text-primary);
     outline: none; transition: border-color 0.3s;
     text-align: center;
   }
-  .wish-input:focus { border-color: #9CB5D1; }
-  .wish-input::placeholder { color: #bbb; font-size: 14px; }
+  .wish-input:focus { border-color: var(--accent); }
+  .wish-input::placeholder { color: var(--placeholder); font-size: 14px; }
   .wish-submit {
     display: inline-flex; align-items: center; gap: 4px;
     background: transparent; border: 1px solid rgba(156,181,209,0.3);
     border-radius: 20px; padding: 6px 20px; margin-top: 16px;
-    font-size: 13px; color: #9CB5D1;
+    font-size: 13px; color: var(--accent);
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     cursor: pointer; transition: all 0.3s ease;
     letter-spacing: 0.06em;
   }
   .wish-submit:hover {
     background: rgba(156,181,209,0.08);
-    border-color: #9CB5D1;
+    border-color: var(--accent);
     transform: translateY(-1px);
   }
   .wish-done {
-    display: none; font-size: 14px; color: #9CB5D1;
+    display: none; font-size: 14px; color: var(--accent);
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     animation: wishFly 0.6s ease;
   }
@@ -246,6 +302,17 @@
     60% { opacity: 1; transform: translateY(-6px); }
     100% { opacity: 1; transform: translateY(0); }
   }
+
+
+  /* Theme Toggle */
+  .theme-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 18px; padding: 4px 8px; border-radius: 6px;
+    transition: background 0.2s, opacity 0.2s;
+    opacity: 0.7; line-height: 1;
+  }
+  .theme-toggle:hover { opacity: 1; background: var(--border-subtle); }
+  body, .nav { transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
 
   @media (max-width: 600px) {
     .nav-inner { padding: 8px 12px; flex-wrap: wrap; justify-content: center; gap: 2px; }
@@ -456,6 +523,24 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(renderWishes, 200);
   });
+
+  // Theme toggle
+  function getTheme() {
+    const saved = localStorage.getItem('bookstore-theme');
+    if (saved) return saved;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const icon = theme === 'dark' ? '☀️' : '🌙';
+    document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = icon);
+    localStorage.setItem('bookstore-theme', theme);
+  }
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+  applyTheme(getTheme());
 </script>
 
 </body>
