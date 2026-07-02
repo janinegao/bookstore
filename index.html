@@ -353,9 +353,9 @@
   /* Theme Toggle */
   .theme-toggle {
     background: none; border: none; cursor: pointer;
-    font-size: 18px; padding: 4px 8px; border-radius: 6px;
+    font-size: 14px; padding: 2px 6px; border-radius: 4px;
     transition: background 0.2s, opacity 0.2s;
-    opacity: 0.7; line-height: 1;
+    opacity: 0.5; line-height: 1;
   }
   .theme-toggle:hover { opacity: 1; background: var(--border-subtle); }
 
@@ -398,7 +398,7 @@
         <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">首页</a>
         <a href="wish.html">许愿墙</a>
         <a href="about.html">关于我</a>
-        <button id="themeToggleMain" class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌙</button>
+        <button id="themeToggleMain" class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">深</button>
       </div>
     </div>
   </nav>
@@ -435,7 +435,7 @@
         <a href="wish.html">许愿墙</a>
         <a href="about.html">关于我</a>
       </div>
-      <button id="themeToggleDetail" class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">🌙</button>
+      <button id="themeToggleDetail" class="theme-toggle" onclick="toggleTheme()" title="切换深色/浅色模式">深</button>
     </div>
   </nav>
   <div class="detail-content">
@@ -782,7 +782,7 @@
   }
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    const icon = theme === 'dark' ? '☀️' : '🌙';
+    const icon = theme === 'dark' ? '浅' : '深';
     document.querySelectorAll('.theme-toggle').forEach(b => b.textContent = icon);
     localStorage.setItem('bookstore-theme', theme);
   }
