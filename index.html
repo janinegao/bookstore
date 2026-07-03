@@ -120,11 +120,13 @@
   
 
   .hero { text-align: center; padding: 80px 32px 48px; max-width: 700px; margin: 0 auto; }
+  .hero-title-group {
+    display: inline-flex; flex-direction: column; align-items: stretch;
+  }
   .hero-title {
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 42px; font-weight: 700; line-height: 1.15;
     color: var(--text-primary); margin-bottom: 0; letter-spacing: 0.02em;
-    display: inline-flex; flex-direction: column; align-items: stretch;
   }
   .hero-title-cn {
     display: block; letter-spacing: 0.12em;
@@ -144,9 +146,8 @@
     font-family: 'Noto Serif SC', 'Source Serif 4', Georgia, serif;
     font-size: 13px; font-weight: 400;
     color: #9CB5D1; line-height: 1.6;
-    margin-top: 8px; letter-spacing: 0.08em;
+    margin-top: 6px; letter-spacing: 0.15em;
     text-align: justify;
-    display: block;
   }
   .hero-progress {
     font-family: 'Source Sans 3', sans-serif;
@@ -416,7 +417,10 @@
   </nav>
 
   <section class="hero">
-    <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span><span class="hero-slogan">古法手搓读书笔记</span></h1>
+    <div class="hero-title-group">
+      <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span></h1>
+      <p class="hero-slogan">古法手搓读书笔记</p>
+    </div>
 
   </section>
 
