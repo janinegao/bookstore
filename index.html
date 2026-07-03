@@ -147,13 +147,15 @@
     font-size: 13px; font-weight: 400;
     color: #9CB5D1; line-height: 1.6;
     margin-top: 6px; letter-spacing: 0.15em;
-    display: flex; align-items: center; gap: 12px;
+    display: flex; align-items: center; gap: 10px;
+    justify-content: center;
     white-space: nowrap;
   }
-  .slogan-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(to right, transparent, var(--accent), transparent);
-    opacity: 0.25;
+  .hero-slogan::before,
+  .hero-slogan::after {
+    content: '·';
+    color: #9CB5D1;
+    opacity: 0.5;
   }
   .hero-progress {
     font-family: 'Source Sans 3', sans-serif;
@@ -425,7 +427,7 @@
   <section class="hero">
     <div class="hero-title-group">
       <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span></h1>
-      <p class="hero-slogan"><span class="slogan-line"></span>古法手搓读书笔记<span class="slogan-line"></span></p>
+      <p class="hero-slogan">古法手搓读书笔记</p>
     </div>
 
   </section>
