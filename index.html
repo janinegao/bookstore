@@ -145,8 +145,8 @@
     font-size: 13px; font-weight: 400;
     color: #9CB5D1; line-height: 1.6;
     margin-top: 8px; letter-spacing: 0.08em;
-    text-align: center;
-    display: inline-block;
+    text-align: justify;
+    display: block;
   }
   .hero-progress {
     font-family: 'Source Sans 3', sans-serif;
@@ -370,6 +370,10 @@
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
+  @media (min-width: 1400px) {
+    .books-grid { grid-template-columns: repeat(6, 1fr); gap: 48px 28px; }
+    .hero { padding: 100px 32px 56px; }
+  }
   @media (max-width: 900px) {
     .books-grid { grid-template-columns: repeat(4, 1fr); gap: 40px 24px; }
   }
@@ -383,6 +387,7 @@
 
   .hero { padding: 48px 20px 32px; }
     .hero-title { font-size: 28px; }
+    .hero-slogan { font-size: 11px; }
     .books-section { padding: 0 16px 80px; }
     .books-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
     .detail-lead { font-size: 20px; }
@@ -411,8 +416,7 @@
   </nav>
 
   <section class="hero">
-    <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span></h1>
-    <p class="hero-slogan">古法手搓读书笔记</p>
+    <h1 class="hero-title"><span class="hero-title-cn">有求必应书屋</span><span class="hero-slogan">古法手搓读书笔记</span></h1>
 
   </section>
 
